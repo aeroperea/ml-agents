@@ -1,0 +1,65 @@
+{
+    "PelletGrabber": {
+        "checkpoints": [
+            {
+                "steps": 849964,
+                "file_path": "results\\attempt1\\PelletGrabber\\PelletGrabber-849964.onnx",
+                "reward": 2693.321660542488,
+                "creation_time": 1733283461.8196473,
+                "auxillary_file_paths": [
+                    "results\\attempt1\\PelletGrabber\\PelletGrabber-849964.pt"
+                ]
+            },
+            {
+                "steps": 899978,
+                "file_path": "results\\attempt1\\PelletGrabber\\PelletGrabber-899978.onnx",
+                "reward": 2593.4642419643474,
+                "creation_time": 1733283480.8092513,
+                "auxillary_file_paths": [
+                    "results\\attempt1\\PelletGrabber\\PelletGrabber-899978.pt"
+                ]
+            },
+            {
+                "steps": 949996,
+                "file_path": "results\\attempt1\\PelletGrabber\\PelletGrabber-949996.onnx",
+                "reward": 267.8613977620476,
+                "creation_time": 1733283503.2812102,
+                "auxillary_file_paths": [
+                    "results\\attempt1\\PelletGrabber\\PelletGrabber-949996.pt"
+                ]
+            },
+            {
+                "steps": 999989,
+                "file_path": "results\\attempt1\\PelletGrabber\\PelletGrabber-999989.onnx",
+                "reward": 815.3838179394429,
+                "creation_time": 1733283520.7244282,
+                "auxillary_file_paths": [
+                    "results\\attempt1\\PelletGrabber\\PelletGrabber-999989.pt"
+                ]
+            },
+            {
+                "steps": 1001158,
+                "file_path": "results\\attempt1\\PelletGrabber\\PelletGrabber-1001158.onnx",
+                "reward": 762.5610969607172,
+                "creation_time": 1733283520.9470487,
+                "auxillary_file_paths": [
+                    "results\\attempt1\\PelletGrabber\\PelletGrabber-1001158.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1001158,
+            "file_path": "results\\attempt1\\PelletGrabber.onnx",
+            "reward": 762.5610969607172,
+            "creation_time": 1733283520.9470487,
+            "auxillary_file_paths": [
+                "results\\attempt1\\PelletGrabber\\PelletGrabber-1001158.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.2.1+cu121"
+    }
+}
