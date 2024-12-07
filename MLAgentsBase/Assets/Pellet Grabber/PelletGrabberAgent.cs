@@ -98,7 +98,7 @@ public class PelletGrabberAgent : Agent
 
         // Determine reward or penalty
         float reward = isCloser
-            ? Mathf.Clamp(Mathf.Pow(proximityReward, proximityReward * movementDot * 0.25f), 0f, 10)
+            ? Mathf.Clamp(Mathf.Pow(proximityReward, proximityReward * movementDot * 0.335f), 0f, 15)
             : Mathf.Clamp(-penaltyIfFarther, -1000f, 0f) * 0.6f;
         // //Debug.Log($"weird thing { Mathf.Pow(Mathf.Abs(-distancePenalty * (1 + -distanceTraveledTowardTarget)), 1f + exponentialBias)} isCloser {isCloser}");
         AddReward(reward);
