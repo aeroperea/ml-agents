@@ -2,22 +2,22 @@
     "PelletGrabber": {
         "checkpoints": [
             {
-                "steps": 194087,
-                "file_path": "results\\attempt13\\PelletGrabber\\PelletGrabber-194087.onnx",
-                "reward": 175.64980597291623,
-                "creation_time": 1733548945.5092092,
+                "steps": 39178,
+                "file_path": "results\\attempt13\\PelletGrabber\\PelletGrabber-39178.onnx",
+                "reward": 70.65774528432337,
+                "creation_time": 1733549501.4115007,
                 "auxillary_file_paths": [
-                    "results\\attempt13\\PelletGrabber\\PelletGrabber-194087.pt"
+                    "results\\attempt13\\PelletGrabber\\PelletGrabber-39178.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 194087,
+            "steps": 39178,
             "file_path": "results\\attempt13\\PelletGrabber.onnx",
-            "reward": 175.64980597291623,
-            "creation_time": 1733548945.5092092,
+            "reward": 70.65774528432337,
+            "creation_time": 1733549501.4115007,
             "auxillary_file_paths": [
-                "results\\attempt13\\PelletGrabber\\PelletGrabber-194087.pt"
+                "results\\attempt13\\PelletGrabber\\PelletGrabber-39178.pt"
             ]
         }
     },
