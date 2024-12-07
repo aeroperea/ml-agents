@@ -56,6 +56,7 @@ public class PelletGrabberAgent : Agent
         Vector3 initialToTarget = pelletT.localPosition - transform.localPosition;
         initialSqrDist = Mathf.Max(initialToTarget.sqrMagnitude, 0.0001f); // Prevent division by zero
         lastMagSq = initialSqrDist;
+        lastPosition = transform.localPosition;
 
         isEpisodeDone = false;
         isSuccess = false;
@@ -68,6 +69,8 @@ public class PelletGrabberAgent : Agent
         continuousActionOut[1] = Input.GetAxis("Vertical");
     }
 
+    float lastPosition;
+
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
         stepReward = 0f;
@@ -79,9 +82,13 @@ public class PelletGrabberAgent : Agent
         transform.Translate(movementVector, Space.World);
 
         float timePassed = Time.time - startTime;
+        float movementVector = transform.localPosition - lastPosition;
         toTarget = pelletT.localPosition - transform.localPosition;
+        float movementDot = Vector3.Dot(movementVector, toTarget);
         sqrMagnitude = Mathf.Abs(Mathf.Max(toTarget.sqrMagnitude, 0.0001f)); // Prevent invalid math
-        bool isCloser = sqrMagnitude < lastMagSq;
+        
+        // bool isCloser = sqrMagnitude < lastMagSq;
+        bool inDirection = movementDot == 1;
 
         // Calculate improvement based on squared distance traveled toward the target
         float distanceTraveledTowardTarget = initialSqrDist - sqrMagnitude;
@@ -90,12 +97,13 @@ public class PelletGrabberAgent : Agent
         float penaltyIfFarther = Mathf.Abs(Mathf.Pow(proximityReward, 0.00042f * Mathf.Pow(proximityReward * (1 + Mathf.Abs(distanceTraveledTowardTarget)), 1f + exponentialBias)));
 
         // Determine reward or penalty
-        float reward = isCloser
+        float reward = movementDot == 1
             ? Mathf.Clamp(proximityReward, 0f, 1000f)
             : Mathf.Clamp(-penaltyIfFarther, -1000f, 0f) * 0.6f;
         // //Debug.Log($"weird thing { Mathf.Pow(Mathf.Abs(-distancePenalty * (1 + -distanceTraveledTowardTarget)), 1f + exponentialBias)} isCloser {isCloser}");
         AddReward(reward);
         stepReward += reward;
+        lastPosition = transform.localPosition;
 
         // Boundary penalty
         if (Mathf.Abs(transform.localPosition.x) > startRange.x || Mathf.Abs(transform.localPosition.z) > startRange.z)
