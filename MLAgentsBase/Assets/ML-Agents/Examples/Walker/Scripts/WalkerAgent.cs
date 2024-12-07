@@ -59,6 +59,8 @@ public class WalkerAgent : Agent
     JointDriveController m_JdController;
     EnvironmentParameters m_ResetParams;
 
+    public bool doesGroundReset = false;
+
     public override void Initialize()
     {
         m_OrientationCube = GetComponentInChildren<OrientationCubeController>();
@@ -84,6 +86,12 @@ public class WalkerAgent : Agent
         m_JdController.SetupBodyPart(handR);
 
         m_ResetParams = Academy.Instance.EnvironmentParameters;
+
+        GroundContact[] groundContacts = GetComponentsInChildren<GroundContact>();
+        foreach(GroundContact gc in groundContacts)
+        {
+            gc.agentDoneOnGroundContact = doesGroundReset;
+        }
     }
 
     /// <summary>
