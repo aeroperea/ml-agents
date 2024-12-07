@@ -7,52 +7,56 @@ using Random = UnityEngine.Random;
 public class PelletGrabberAgent : Agent
 {
     [SerializeField] Transform pelletT;
-    private float moveSpeed = 10;
-    private float hitPelletReward = 90f; // find a reward formula for this later
-    private float hitWallPenalty = -1f;
-    private float maxTimePenalty = -90f;
+    private float moveSpeed = 10f;
+    private float hitPelletReward = 90f;
+    private float hitWallPenalty = -10f;
+    private float maxTimePenalty = -10f;
     private float proximityReward = 5f;
-    private float distancePenalty = -0.5f;
-    // private float wrongWayPenaltyModifier = 0.75f;
-    private float penaltyPerStep = -0.01f;
-    private float speedRewardModifier = 2;
+    // private float distancePenalty = -1f;
+    private float penaltyPerStep = 0f;
+    private float speedRewardModifier = 2f;
+    public float exponentialBias = 0.15f;
 
+    private float maxTime = 10f;
+    private Vector3 toTarget;
+    private float lastMagSq;
+    private float initialSqrDist;
+    private float sqrMagnitude;
+    private float startTime;
+    private float accumulatedReward = 0f;
+    private float stepReward = 0f;
 
-    private float maxTime = 10;
-    Vector3 toTarget;
-    float lastClosestSq;
-    float sqrMagnitude;
-    float startTime;
-    float timePassed;
-    float proximityCheckInterval = 0.1f;
-    float lastProximityCheckTime;
+    [SerializeField] public Vector3 startRange = new Vector3(14, 0, 14);
+    [SerializeField] public Color victoryColor = Color.green;
+    [SerializeField] public Color failColor = Color.red;
+    [SerializeField] public MeshRenderer floorMeshRenderer;
 
-    private float exponentialBias = 0.15f;
-
-    // [Header("Environment Variables")]
-    public Vector3 startRange = new Vector3(14, 0, 14);
-    public Color victoryColor = Color.green;
-    public Color failColor = Color.red;
-    public MeshRenderer floorMeshRenderer;
-
-    // Flags for managing episode termination
     private bool isEpisodeDone = false;
     private bool isSuccess = false;
 
-    private float accumulatedReward; // Stores the total reward for the current episode
-
     public override void OnEpisodeBegin()
     {
-        accumulatedReward = 0;
+        accumulatedReward = 0f;
+        stepReward = 0f;
         startTime = Time.time;
-        timePassed = 0;
-        lastProximityCheckTime = Time.time;
-        transform.localPosition = new Vector3(Random.Range(-startRange.x, startRange.x), startRange.y, Random.Range(-startRange.z, startRange.z));
-        pelletT.localPosition = new Vector3(Random.Range(-startRange.x, startRange.x), startRange.y, Random.Range(-startRange.z, startRange.z));
-        toTarget = pelletT.localPosition - transform.localPosition;
-        sqrMagnitude = Mathf.Abs(toTarget.sqrMagnitude);
-        lastClosestSq = sqrMagnitude;
-        // Debug.Log("last closest on episode begin" + lastClosestSq);
+
+        // Reset positions
+        transform.localPosition = new Vector3(
+            Random.Range(-startRange.x, startRange.x),
+            startRange.y,
+            Random.Range(-startRange.z, startRange.z)
+        );
+
+        pelletT.localPosition = new Vector3(
+            Random.Range(-startRange.x, startRange.x),
+            startRange.y,
+            Random.Range(-startRange.z, startRange.z)
+        );
+
+        Vector3 initialToTarget = pelletT.localPosition - transform.localPosition;
+        initialSqrDist = Mathf.Max(initialToTarget.sqrMagnitude, 0.0001f); // Prevent division by zero
+        lastMagSq = initialSqrDist;
+
         isEpisodeDone = false;
         isSuccess = false;
     }
@@ -66,112 +70,118 @@ public class PelletGrabberAgent : Agent
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
+        stepReward = 0f;
+
         float actionX = actionBuffers.ContinuousActions[0];
         float actionZ = actionBuffers.ContinuousActions[1];
 
         Vector3 movementVector = new Vector3(actionX, 0, actionZ) * moveSpeed * Time.deltaTime;
         transform.Translate(movementVector, Space.World);
 
-        timePassed = Time.time - startTime;
-
+        float timePassed = Time.time - startTime;
         toTarget = pelletT.localPosition - transform.localPosition;
-        sqrMagnitude = Mathf.Abs(toTarget.sqrMagnitude);
-        float distanceDelta = Mathf.Abs(lastClosestSq - sqrMagnitude);
-        bool isCloser = sqrMagnitude < lastClosestSq;
+        sqrMagnitude = Mathf.Abs(Mathf.Max(toTarget.sqrMagnitude, 0.0001f)); // Prevent invalid math
+        bool isCloser = sqrMagnitude < lastMagSq;
 
-        // Add rewards or penalties and update accumulated reward
-        if (Time.time > lastProximityCheckTime + proximityCheckInterval)
-        {
-            float distanceRewardSignal = Mathf.Pow(
-    (1 / Mathf.Max(sqrMagnitude, 0.0001f)) * (1 + distanceDelta) * proximityReward,
-    1f + exponentialBias
-);
+        // Calculate improvement based on squared distance traveled toward the target
+        float distanceTraveledTowardTarget = initialSqrDist - sqrMagnitude;
 
-            float reward = isCloser
-                ? Mathf.Clamp(distanceRewardSignal, 0, (proximityReward * distanceDelta) ^ (1f + exponentialBias)))
-                : Mathf.Clamp(distancePenalty * sqrMagnitude * 0.0025f, distancePenalty * 0.25f, 0);
+        // Compute reward if moving closer
+        float rewardIfCloser = Mathf.Abs(Mathf.Pow(proximityReward, 0.00042f * Mathf.Pow(proximityReward * (1 + Mathf.Abs(distanceTraveledTowardTarget)), 1f + exponentialBias)));
 
-            AddReward(reward);
-            accumulatedReward += reward; // Update accumulated reward
-            lastProximityCheckTime = Time.time;
-        }
+        // Determine reward or penalty
+        float reward = isCloser
+            ? Mathf.Clamp(rewardIfCloser, 0f, 1000f)
+            : Mathf.Clamp(-rewardIfCloser, -1000f, 0f) * 0.6f;
+        // //Debug.Log($"weird thing { Mathf.Pow(Mathf.Abs(-distancePenalty * (1 + -distanceTraveledTowardTarget)), 1f + exponentialBias)} isCloser {isCloser}");
+        AddReward(reward);
+        stepReward += reward;
 
+        // Boundary penalty
         if (Mathf.Abs(transform.localPosition.x) > startRange.x || Mathf.Abs(transform.localPosition.z) > startRange.z)
         {
             AddReward(hitWallPenalty);
-            accumulatedReward += hitWallPenalty; // Update accumulated reward
+            stepReward += hitWallPenalty;
+            isEpisodeDone = true;
         }
 
+        // Check success
         if (toTarget.magnitude < 1f)
         {
             isSuccess = true;
             isEpisodeDone = true;
         }
 
+        // Time-based penalty
         if (timePassed > maxTime)
         {
             AddReward(maxTimePenalty);
+            stepReward += maxTimePenalty;
             isEpisodeDone = true;
-            accumulatedReward += maxTimePenalty; // Update accumulated reward
         }
         else
         {
             AddReward(penaltyPerStep);
-            accumulatedReward += penaltyPerStep; // Update accumulated reward
+            stepReward += penaltyPerStep;
         }
+
+        //Debug.Log($"Step Reward: {stepReward}, toTarget: {toTarget}, Time Passed: {timePassed}");
 
         if (isEpisodeDone)
         {
-            OnEpisodeEnd(isSuccess ? CalculateSuccessReward() : 0, isSuccess);
+            OnEpisodeEnd(isSuccess ? hitPelletReward : 0, isSuccess);
         }
 
-        lastClosestSq = Mathf.Min(sqrMagnitude, lastClosestSq);
+        lastMagSq = sqrMagnitude;
     }
 
-    private float CalculateSuccessReward()
+    public override void CollectObservations(VectorSensor sensor)
     {
-        timePassed = Time.time - startTime;
-        if (timePassed > 0.001f) // Avoid division by zero
-        {
-            return hitPelletReward * Mathf.Exp(-speedRewardModifier * timePassed / maxTime);
-        }
-        return hitPelletReward;
+        toTarget = pelletT.localPosition - transform.localPosition;
+
+        sensor.AddObservation(toTarget.x / startRange.x);
+        sensor.AddObservation(toTarget.z / startRange.z);
+        sensor.AddObservation(toTarget.magnitude / (startRange.magnitude));
+        sensor.AddObservation(transform.localPosition.x / startRange.x);
+        sensor.AddObservation(transform.localPosition.z / startRange.z);
+        Vector3 normalizedDirection = toTarget.normalized;
+        sensor.AddObservation(normalizedDirection.x);
+        sensor.AddObservation(normalizedDirection.z);
+        float timeRemaining = Mathf.Clamp01((maxTime - (Time.time - startTime)) / maxTime);
+        sensor.AddObservation(timeRemaining);
+        sensor.AddObservation(isSuccess ? 1f : 0f);
     }
 
     public void OnEpisodeEnd(float reward, bool success = false)
     {
         if (success)
         {
-            reward += CalculateSuccessReward();
+            float timePassed = Time.time - startTime;
+            if (timePassed > 0.001f)
+            {
+                reward += hitPelletReward * (1 - (timePassed / maxTime)) * speedRewardModifier;
+            }
             SetFloorColor(victoryColor);
-            Debug.Log($"hit pelletReward {reward}");
             AddReward(reward);
+            accumulatedReward += reward;
+            //Debug.Log($"Episode Success! Accumulated Reward: {accumulatedReward}");
         }
         else
         {
             SetFloorColor(failColor);
+            //Debug.Log($"Episode Failed. Accumulated Reward: {accumulatedReward}");
         }
         EndEpisode();
 
-        // Reset flags
         isEpisodeDone = false;
         isSuccess = false;
     }
 
-
-    void SetFloorColor(Color newColor)
+    private void SetFloorColor(Color newColor)
     {
-        // Create a new MaterialPropertyBlock
         MaterialPropertyBlock propertyBlock = new MaterialPropertyBlock();
-
-        // Get the current MaterialPropertyBlock values from the renderer
         floorMeshRenderer.GetPropertyBlock(propertyBlock);
-
-        // Set the color property (assumes the shader uses "_Color" for the main color)
         propertyBlock.SetColor("_Color", newColor);
-
-        // Apply the updated MaterialPropertyBlock to the renderer
         floorMeshRenderer.SetPropertyBlock(propertyBlock);
     }
-
 }
