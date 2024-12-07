@@ -87,12 +87,12 @@ public class PelletGrabberAgent : Agent
         float distanceTraveledTowardTarget = initialSqrDist - sqrMagnitude;
 
         // Compute reward if moving closer
-        float rewardIfCloser = Mathf.Abs(Mathf.Pow(proximityReward, 0.00042f * Mathf.Pow(proximityReward * (1 + Mathf.Abs(distanceTraveledTowardTarget)), 1f + exponentialBias)));
+        float penaltyIfFarther = Mathf.Abs(Mathf.Pow(proximityReward, 0.00042f * Mathf.Pow(proximityReward * (1 + Mathf.Abs(distanceTraveledTowardTarget)), 1f + exponentialBias)));
 
         // Determine reward or penalty
         float reward = isCloser
-            ? Mathf.Clamp(rewardIfCloser, 0f, 1000f)
-            : Mathf.Clamp(-rewardIfCloser, -1000f, 0f) * 0.6f;
+            ? Mathf.Clamp(proximityReward, 0f, 1000f)
+            : Mathf.Clamp(-penaltyIfFarther, -1000f, 0f) * 0.6f;
         // //Debug.Log($"weird thing { Mathf.Pow(Mathf.Abs(-distancePenalty * (1 + -distanceTraveledTowardTarget)), 1f + exponentialBias)} isCloser {isCloser}");
         AddReward(reward);
         stepReward += reward;
