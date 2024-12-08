@@ -163,7 +163,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6907740118844148851, guid: f0d7741d9e06247f6843b921a206b978,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 705473352181809685}
+      addedObject: {fileID: 2468472519229930716}
   m_SourcePrefab: {fileID: 100100000, guid: f0d7741d9e06247f6843b921a206b978, type: 3}
 --- !u!1 &6713178126238440196 stripped
 GameObject:
@@ -171,22 +171,22 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 213013859575191415}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &705473352181809685
+--- !u!114 &2468472519229930716
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6713178126238440196}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a9c12b9fa113a14cb34c78b2724d8b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1997371326124021637}
-  thing2Throw: {fileID: 4102160796993507042, guid: 90fab70a3b1bde049a4e9984c0d6da90,
+  target: {fileID: 8273355285613206496}
+  thing2Throw: {fileID: 4446760939288004943, guid: edb46b879aeaf6343bbda9a43cf5e177,
     type: 3}
-  throwForce: 20
+  throwForce: 100
   throwPosRadius: 10
   throwInterval: 1
   intervalRandomness: 0.3
@@ -213,8 +213,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: b000e8fcd1edc454d9e6deb84abefbf9,
+      objectReference: {fileID: 0}
+    - target: {fileID: 3599283675615088294, guid: dd62a2a5a838943fba3d2cbb377a75b3,
         type: 3}
+      propertyPath: m_BehaviorName
+      value: Walker2
+      objectReference: {fileID: 0}
     - target: {fileID: 3599283675615088294, guid: dd62a2a5a838943fba3d2cbb377a75b3,
         type: 3}
       propertyPath: m_DeterministicInference
@@ -225,6 +229,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 140846861312608762}
+    - target: {fileID: 3599283675615088295, guid: dd62a2a5a838943fba3d2cbb377a75b3,
+        type: 3}
+      propertyPath: doesGroundReset
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3925309372585159072, guid: dd62a2a5a838943fba3d2cbb377a75b3,
         type: 3}
       propertyPath: m_RootOrder
@@ -306,9 +315,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3599283675128273467}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1997371326124021637 stripped
+--- !u!4 &8273355285613206496 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 3047582133579042238, guid: dd62a2a5a838943fba3d2cbb377a75b3,
+  m_CorrespondingSourceObject: {fileID: 4837962911197512155, guid: dd62a2a5a838943fba3d2cbb377a75b3,
     type: 3}
   m_PrefabInstance: {fileID: 3599283675128273467}
   m_PrefabAsset: {fileID: 0}

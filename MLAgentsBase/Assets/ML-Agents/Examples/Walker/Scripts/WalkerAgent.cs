@@ -63,6 +63,15 @@ public class WalkerAgent : Agent
 
     public override void Initialize()
     {
+        GroundContact[] groundContacts = GetComponentsInChildren<GroundContact>();
+        if(!doesGroundReset)
+        {
+            foreach(GroundContact gc in groundContacts)
+            {
+                gc.agentDoneOnGroundContact = doesGroundReset;
+            }
+        }
+
         m_OrientationCube = GetComponentInChildren<OrientationCubeController>();
         m_DirectionIndicator = GetComponentInChildren<DirectionIndicator>();
 
@@ -87,11 +96,7 @@ public class WalkerAgent : Agent
 
         m_ResetParams = Academy.Instance.EnvironmentParameters;
 
-        GroundContact[] groundContacts = GetComponentsInChildren<GroundContact>();
-        foreach(GroundContact gc in groundContacts)
-        {
-            gc.agentDoneOnGroundContact = doesGroundReset;
-        }
+        
     }
 
     /// <summary>
@@ -207,6 +212,24 @@ public class WalkerAgent : Agent
         bpDict[forearmL].SetJointStrength(continuousActions[++i]);
         bpDict[armR].SetJointStrength(continuousActions[++i]);
         bpDict[forearmR].SetJointStrength(continuousActions[++i]);
+
+        Vector3 chestEuler = chest.eulerAngles;
+        float upwardsDot = Vector3.Dot(chestEuler, Vector3.zero);
+        float straightBodyReward = 3.5f;
+        
+        AddReward(Mathf.Pow((upwardsDot * straightBodyReward), 2f));
+
+        Vector3 hipsEuler = hips.eulerAngles;
+        upwardsDot = Vector3.Dot(hipsEuler, Vector3.zero);
+        
+        AddReward(Mathf.Pow((upwardsDot * straightBodyReward), 2f));
+        
+        Vector3 headEuler = head.eulerAngles;
+        upwardsDot = Vector3.Dot(headEuler, Vector3.zero);
+        
+        AddReward(Mathf.Pow((upwardsDot * straightBodyReward), 2f));
+        
+        
     }
 
     //Update OrientationCube and DirectionIndicator
@@ -259,7 +282,7 @@ public class WalkerAgent : Agent
             );
         }
 
-        AddReward(matchSpeedReward * lookAtTargetReward);
+        // AddReward(matchSpeedReward * lookAtTargetReward);
     }
 
     //Returns the average velocity of all of the body parts
@@ -297,6 +320,6 @@ public class WalkerAgent : Agent
     /// </summary>
     public void TouchedTarget()
     {
-        AddReward(1f);
+        // AddReward(1f);
     }
 }
