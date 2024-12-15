@@ -451,7 +451,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: c18821275d8934947a9a10c1f695c444, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 32a47f7b2b0dc9345ba7e7012ab043b9, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: PelletGrabber
