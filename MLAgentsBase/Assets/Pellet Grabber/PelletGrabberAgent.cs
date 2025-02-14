@@ -153,7 +153,6 @@ public class PelletGrabberAgent : Agent
 
         sensor.AddObservation(toTarget.x / startRange.x);
         sensor.AddObservation(toTarget.z / startRange.z);
-        sensor.AddObservation(toTarget.magnitude / (startRange.magnitude));
         sensor.AddObservation(transform.localPosition.x / startRange.x);
         sensor.AddObservation(transform.localPosition.z / startRange.z);
         Vector3 normalizedDirection = toTarget.normalized;
@@ -176,12 +175,12 @@ public class PelletGrabberAgent : Agent
             SetFloorColor(victoryColor);
             AddReward(reward);
             accumulatedReward += reward;
-            Debug.Log($"Episode Success! Accumulated Reward: {accumulatedReward}");
+            //Debug.Log($"Episode Success! Accumulated Reward: {accumulatedReward}");
         }
         else
         {
             SetFloorColor(failColor);
-            Debug.Log($"Episode Failed. Accumulated Reward: {accumulatedReward}");
+            //Debug.Log($"Episode Failed. Accumulated Reward: {accumulatedReward}");
         }
         EndEpisode();
 
