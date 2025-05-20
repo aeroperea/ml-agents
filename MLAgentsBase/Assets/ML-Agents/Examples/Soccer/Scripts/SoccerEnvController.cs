@@ -16,7 +16,7 @@ public class SoccerEnvController : MonoBehaviour
         public Rigidbody Rb;
     }
 
-
+    public ScoreText scoreText;
     /// <summary>
     /// Max Academy steps before this platform resets
     /// </summary>
@@ -101,11 +101,19 @@ public class SoccerEnvController : MonoBehaviour
         {
             m_BlueAgentGroup.AddGroupReward(1 - (float)m_ResetTimer / MaxEnvironmentSteps);
             m_PurpleAgentGroup.AddGroupReward(-1);
+            if(scoreText != null)
+            {
+                scoreText.AddTeam1Score();
+            }
         }
         else
         {
             m_PurpleAgentGroup.AddGroupReward(1 - (float)m_ResetTimer / MaxEnvironmentSteps);
             m_BlueAgentGroup.AddGroupReward(-1);
+            if (scoreText != null)
+            {
+                scoreText.AddTeam2Score();
+            }
         }
         m_PurpleAgentGroup.EndGroupEpisode();
         m_BlueAgentGroup.EndGroupEpisode();

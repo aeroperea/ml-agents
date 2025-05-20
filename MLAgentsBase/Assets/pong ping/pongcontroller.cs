@@ -9,29 +9,55 @@ public class PlayerPaddle : MonoBehaviour
 
     KeyCode upKey, downKey;
 
-    inputAxis = "Vertical" // in the case that its player 1
-    inputAxis = "Mouse Y" // in the case that its player 2
+    public bool isPlayer1;
+
+    string inputAxis = "Vertical";
+
+    // inputAxis = "Vertical"
+    // inputAxis = "Mouse Y"
 
     void Start()
     {
-        if(useArrow)
+        string[] connectedControllers = Input.GetJoystickNames();
+        foreach(string jName in connectedControllers)
         {
-            upKey = KeyCode.UpArrow;
-            downKey = KeyCode.DownArrow;
+            print(jName);    
         }
-        else
+        
+    
+        if(!isPlayer1)
         {
-            upKey = KeyCode.W;
-            downKey = KeyCode.S;
+            inputAxis = "Mouse Y";
         }
+        // if(useArrow)
+        // {
+        //     upKey = KeyCode.UpArrow;
+        //     downKey = KeyCode.DownArrow;
+        // }
+        // else
+        // {
+        //     upKey = KeyCode.W;
+        //     downKey = KeyCode.S;
+        // }
     }
 
     private void Update()
     {
+        
         // Get vertical input (-1 for "S", 1 for "W")
         float moveInput = 0;
-        moveInput += Input.GetKey(upKey) ? 1 : 0;
-        moveInput -= Input.GetKey(downKey) ? 1 : 0;
+        if(isPlayer1)
+        {
+            print(Input.GetAxis(inputAxis)); 
+            moveInput = -Input.GetAxis(inputAxis);
+        }
+        else
+        {
+            moveInput += Input.GetKey(KeyCode.W) ? 1 : 0;
+            moveInput -= Input.GetKey(KeyCode.S) ? 1 : 0;
+        }
+        // moveInput += Input.GetKey(upKey) ? 1 : 0;
+        // moveInput -= Input.GetKey(downKey) ? 1 : 0;
         // Move the paddle
         transform.position += Vector3.right * moveInput * speed * Time.deltaTime;
 
