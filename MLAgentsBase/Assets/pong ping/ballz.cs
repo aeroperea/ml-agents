@@ -12,7 +12,7 @@ public class Ballz : MonoBehaviour
     private Rigidbody rb;
 
     public Gradient colorGradient;
-    public TextMeshProUGUI speedText;
+    //public TextMeshProUGUI speedText;
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -34,16 +34,14 @@ public class Ballz : MonoBehaviour
             rb.linearVelocity = direction * speed;
         }
         normalizedSpeed = rb.linearVelocity.magnitude / currentMax;
-        speedText.text = $"Speed: {rb.linearVelocity.magnitude}";
-        speedText.color = colorGradient.Evaluate(normalizedSpeed);
+        //speedText.text = $"Speed: {rb.linearVelocity.magnitude}";
+        //speedText.color = colorGradient.Evaluate(normalizedSpeed);
 
         // print($"normalized speed: {normalizedSpeed}  current max {currentMax}"); 
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        print("Collision Detected!");
-
         if (collision.gameObject.CompareTag("Paddle"))
         {
             // Reflect away from paddle and apply force

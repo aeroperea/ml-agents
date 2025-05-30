@@ -101,7 +101,6 @@ GameObject:
   - component: {fileID: 7196883069135389475}
   - component: {fileID: 7070168543021887736}
   - component: {fileID: 8993094977311452957}
-  - component: {fileID: 1276523233678876640}
   m_Layer: 0
   m_Name: goal2.0 (1)
   m_TagString: Untagged
@@ -225,22 +224,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
---- !u!114 &1276523233678876640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2009317447036978968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9eaa4d75000a1c94481bfe184eeb2562, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ballz: {fileID: 0}
-  middleZ_Pos: 0
-  leftAgent: {fileID: 0}
-  envParent: {fileID: 0}
 --- !u!1 &3569581569082549741
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,7 +237,6 @@ GameObject:
   - component: {fileID: 1464928085487238462}
   - component: {fileID: 2650771823296841076}
   - component: {fileID: 8869938932627080294}
-  - component: {fileID: 3887916929614223030}
   m_Layer: 0
   m_Name: 'goal '
   m_TagString: Untagged
@@ -378,22 +360,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
---- !u!114 &3887916929614223030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3569581569082549741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9eaa4d75000a1c94481bfe184eeb2562, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ballz: {fileID: 0}
-  middleZ_Pos: 0
-  leftAgent: {fileID: 0}
-  envParent: {fileID: 0}
 --- !u!1 &5265454165494209885
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,7 +373,6 @@ GameObject:
   - component: {fileID: 3323424263051153008}
   - component: {fileID: 3180288477589195252}
   - component: {fileID: 7698494224812764945}
-  - component: {fileID: 4538483767382587314}
   m_Layer: 0
   m_Name: goal2.0
   m_TagString: Untagged
@@ -531,22 +496,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
---- !u!114 &4538483767382587314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5265454165494209885}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9eaa4d75000a1c94481bfe184eeb2562, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ballz: {fileID: 0}
-  middleZ_Pos: 0
-  leftAgent: {fileID: 0}
-  envParent: {fileID: 0}
 --- !u!1 &5411521315585335630
 GameObject:
   m_ObjectHideFlags: 0
@@ -866,7 +815,6 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 4
     m_NumAlphaKeys: 2
-  speedText: {fileID: 0}
 --- !u!1 &7182297570777815617
 GameObject:
   m_ObjectHideFlags: 0
@@ -880,7 +828,6 @@ GameObject:
   - component: {fileID: 3850435628944846775}
   - component: {fileID: 518504380532570052}
   - component: {fileID: 7419448505850386469}
-  - component: {fileID: 4314959377008348830}
   m_Layer: 0
   m_Name: goal  (2)
   m_TagString: Untagged
@@ -1004,22 +951,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
---- !u!114 &4314959377008348830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7182297570777815617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9eaa4d75000a1c94481bfe184eeb2562, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ballz: {fileID: 0}
-  middleZ_Pos: 0
-  leftAgent: {fileID: 0}
-  envParent: {fileID: 0}
 --- !u!1 &7255704723692085566
 GameObject:
   m_ObjectHideFlags: 0
@@ -1171,6 +1102,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1372765661004683717, guid: d4cbae5087563a94093484ee7af02761,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372765661004683717, guid: d4cbae5087563a94093484ee7af02761,
+        type: 3}
       propertyPath: DemonstrationName
       value: pongPlayer2
       objectReference: {fileID: 0}
@@ -1312,6 +1248,11 @@ PrefabInstance:
         type: 3}
       propertyPath: Record
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372765661004683717, guid: d4cbae5087563a94093484ee7af02761,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1372765661004683717, guid: d4cbae5087563a94093484ee7af02761,
         type: 3}

@@ -1,6 +1,6 @@
 default_settings: null
 behaviors:
-  PelletGrabberECS:
+  PongAgent:
     trainer_type: ppo
     hyperparameters:
       batch_size: 512
@@ -55,14 +55,14 @@ behaviors:
     summary_freq: 1000
     threaded: true
     self_play: null
-    behavioral_cloning:
-      demo_path: r"C:\ML\Reinforcement Learning\ml-agents\MLAgentsBase\Assets\pong ping\Training Data\Demo\skibidi demo"
-      strength: 0.5
-      steps: 500000
-      batch_size: 64
-      num_epoch: 3
+    # behavioral_cloning:
+    #   demo_path: null
+    #   strength: 0.5
+    #   steps: 500000
+    #   batch_size: 64
+    #   num_epoch: 3
 env_settings:
-  env_path: null
+  env_path: r"C:\ML\Reinforcement Learning\ml-agents\PongPingBuild\UnityEnvironment.exe"
   env_args: null
   base_port: 6000
   num_envs: 1
@@ -81,7 +81,7 @@ engine_settings:
   no_graphics: true
 environment_parameters: null
 checkpoint_settings:
-  run_id: ecs7
+  run_id: pongping
   initialize_from: null
   load_model: false
   resume: false

@@ -8,6 +8,11 @@ public class ScoreText : MonoBehaviour
     int scoreTeam1;
     int scoreTeam2;
 
+    public void Awake()
+    {
+        scoreText.text = "";
+    }
+
     public void AddTeam1Score()
     {
         scoreTeam1++;

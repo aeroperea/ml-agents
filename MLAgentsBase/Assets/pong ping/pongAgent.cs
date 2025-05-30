@@ -73,7 +73,7 @@ public class pongAgent : Agent
         float moveInput = 0;
         if(isPlayer1)
         {
-            print(Input.GetAxis(inputAxis));
+            //print(Input.GetAxis(inputAxis));
             moveInput = -Input.GetAxis(inputAxis);
         }
         else
