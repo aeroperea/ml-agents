@@ -115,7 +115,7 @@ public class PelletGrabberAgentECS : Agent
 
         var rewardData = entityManager.GetComponentData<PelletGrabber>(linkedEntity);
         AddReward(rewardData.reward);
-        Debug.Log(rewardData.reward + " time remaining " + rewardData.timeLeftNormalized + " moveinput " + movementData.moveInput + " isSuccess " + rewardData.isSuccess + " isFailed " + rewardData.isFailed);
+        //Debug.Log(rewardData.reward + " time remaining " + rewardData.timeLeftNormalized + " moveinput " + movementData.moveInput + " isSuccess " + rewardData.isSuccess + " isFailed " + rewardData.isFailed);
 
         // Avoid unnecessary SetReward calls
         if (!rewardData.isSuccess && !rewardData.isFailed)
@@ -124,7 +124,7 @@ public class PelletGrabberAgentECS : Agent
         }
         AddReward(rewardData.isSuccess ? 4.5f * (1 + math.square(rewardData.timeLeftNormalized * 1.5f)) : -6f);
         entityManager.SetComponentEnabled<AgentActiveTag>(linkedEntity, false);
-        Debug.Log(this.gameObject.name + " finished an episode with " + rewardData.reward);
+        //Debug.Log(this.gameObject.name + " finished an episode with " + rewardData.reward);
         //print($"ended ep {rewardData.isFailed} failed time left: {rewardData.timeLeftNormalized}   {rewardData.isSuccess} success relative pos{rewardData.relativeAgentPos} pelletPos {rewardData.relativePelletPos}");
         EndEpisode();
     }

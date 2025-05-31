@@ -137,7 +137,7 @@ public class PelletGrabberAgent : Agent
             accumulatedReward += penaltyPerStep;
         }
 
-        Debug.Log($"Step Reward: {stepReward}, toTarget: {toTarget}, Time Passed: {timePassed}");
+        //Debug.Log($"Step Reward: {stepReward}, toTarget: {toTarget}, Time Passed: {timePassed}");
 
         if (isEpisodeDone)
         {
