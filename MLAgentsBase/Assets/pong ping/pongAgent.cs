@@ -10,7 +10,7 @@ public class pongAgent : Agent
     float stepReward = 0; //reward for the current step
     float accumulatedReward = 0; //reward for episode
     float paddleHeight;
-    float lastX;
+    float lastAction;
 
     [SerializeField] Ballz ballz;
     
@@ -26,8 +26,8 @@ public class pongAgent : Agent
 
     string inputAxis = "Vertical";
 
-    const float hitReward = 1f;
-    const float missPenalty = -1f;
+    const float hitReward = 1.5f;
+    const float missPenalty = -2f;
     const float livingCost = -0.001f;
     const float edgeMultiplier = 0.25f;
 

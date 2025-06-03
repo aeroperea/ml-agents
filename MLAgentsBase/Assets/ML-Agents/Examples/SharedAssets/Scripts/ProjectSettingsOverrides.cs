@@ -1,8 +1,11 @@
 using UnityEngine;
 using Unity.MLAgents;
 
+
+
 namespace Unity.MLAgentsExamples
 {
+    using Physics = UnityEngine.Physics;
     /// <summary>
     /// A helper class for the ML-Agents example scenes to override various
     /// global settings, and restore them afterwards.

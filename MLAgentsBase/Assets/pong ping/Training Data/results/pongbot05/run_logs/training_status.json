@@ -1,0 +1,101 @@
+{
+    "Pong": {
+        "checkpoints": [
+            {
+                "steps": 499962,
+                "file_path": "results\\pongbot05\\Pong\\Pong-499962.onnx",
+                "reward": 0.2192476588862998,
+                "creation_time": 1748982265.842091,
+                "auxillary_file_paths": [
+                    "results\\pongbot05\\Pong\\Pong-499962.pt"
+                ]
+            },
+            {
+                "steps": 999990,
+                "file_path": "results\\pongbot05\\Pong\\Pong-999990.onnx",
+                "reward": 0.43321083201603455,
+                "creation_time": 1748982457.1156564,
+                "auxillary_file_paths": [
+                    "results\\pongbot05\\Pong\\Pong-999990.pt"
+                ]
+            },
+            {
+                "steps": 1499956,
+                "file_path": "results\\pongbot05\\Pong\\Pong-1499956.onnx",
+                "reward": 0.2942295141011766,
+                "creation_time": 1748982652.9123116,
+                "auxillary_file_paths": [
+                    "results\\pongbot05\\Pong\\Pong-1499956.pt"
+                ]
+            },
+            {
+                "steps": 1999986,
+                "file_path": "results\\pongbot05\\Pong\\Pong-1999986.onnx",
+                "reward": 0.5525762868615297,
+                "creation_time": 1748982848.9584484,
+                "auxillary_file_paths": [
+                    "results\\pongbot05\\Pong\\Pong-1999986.pt"
+                ]
+            },
+            {
+                "steps": 2499982,
+                "file_path": "results\\pongbot05\\Pong\\Pong-2499982.onnx",
+                "reward": 0.6618506220845402,
+                "creation_time": 1748983062.4750233,
+                "auxillary_file_paths": [
+                    "results\\pongbot05\\Pong\\Pong-2499982.pt"
+                ]
+            },
+            {
+                "steps": 2999964,
+                "file_path": "results\\pongbot05\\Pong\\Pong-2999964.onnx",
+                "reward": 0.7353811536270839,
+                "creation_time": 1748983237.0103302,
+                "auxillary_file_paths": [
+                    "results\\pongbot05\\Pong\\Pong-2999964.pt"
+                ]
+            },
+            {
+                "steps": 3499954,
+                "file_path": "results\\pongbot05\\Pong\\Pong-3499954.onnx",
+                "reward": 1.6777710760201232,
+                "creation_time": 1748983422.2036922,
+                "auxillary_file_paths": [
+                    "results\\pongbot05\\Pong\\Pong-3499954.pt"
+                ]
+            },
+            {
+                "steps": 3999986,
+                "file_path": "results\\pongbot05\\Pong\\Pong-3999986.onnx",
+                "reward": 0.5596121324433221,
+                "creation_time": 1748983619.8635173,
+                "auxillary_file_paths": [
+                    "results\\pongbot05\\Pong\\Pong-3999986.pt"
+                ]
+            },
+            {
+                "steps": 4390914,
+                "file_path": "results\\pongbot05\\Pong\\Pong-4390914.onnx",
+                "reward": 0.9788187401369214,
+                "creation_time": 1748983765.2755015,
+                "auxillary_file_paths": [
+                    "results\\pongbot05\\Pong\\Pong-4390914.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 4390914,
+            "file_path": "results\\pongbot05\\Pong.onnx",
+            "reward": 0.9788187401369214,
+            "creation_time": 1748983765.2755015,
+            "auxillary_file_paths": [
+                "results\\pongbot05\\Pong\\Pong-4390914.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.4.1+cu124"
+    }
+}

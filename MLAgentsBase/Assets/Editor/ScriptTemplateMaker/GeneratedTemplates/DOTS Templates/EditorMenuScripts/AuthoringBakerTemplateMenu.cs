@@ -10,7 +10,7 @@ public static class AuthoringBaker
     [MenuItem("Assets/Create/My DOTS Scripts/AuthoringBaker", false, 80)] // Adds to 'Create' menu
     private static void CreateBakerScript()
     {
-        string targetDirectory = "Assets/Pellet Grabber/ECS Scripts/Authoring/";
+        string targetDirectory = "Assets/pong ping/pong ping ecs/Authoring/";
 
         // Ensure directory exists
         if (!AssetDatabase.IsValidFolder(targetDirectory))

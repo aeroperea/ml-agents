@@ -10,7 +10,7 @@ public static class ISystemTemplateMenu
     [MenuItem("Assets/Create/My DOTS Scripts/ISystem", false, 80)] // Adds to 'Create' menu
     private static void CreateISystemScript()
     {
-        string targetDirectory = "Assets/Pellet Grabber/ECS Scripts/Systems/";
+        string targetDirectory = "Assets/pong ping/pong ping ecs/Systems/";
 
         // Ensure directory exists
         if (!AssetDatabase.IsValidFolder(targetDirectory))
