@@ -26,10 +26,10 @@ public class pongAgent : Agent
 
     string inputAxis = "Vertical";
 
-    float skibidiToilet = 3;
-    float flusher = 1;
-    // float plunger = -1;
-    float cameraMan = -3;
+    const float hitReward = 1f;
+    const float missPenalty = -1f;
+    const float livingCost = -0.001f;
+    const float edgeMultiplier = 0.25f;
 
     float timer = 0;
     public float timerMax = 5; 
@@ -60,16 +60,6 @@ public class pongAgent : Agent
         // }
     }
 
-    private void FixedUpdate()
-    {
-        timer -= Time.fixedDeltaTime;
-        if(timer < 0)
-        {
-            AddReward (skibidiToilet);
-            timer += timerMax;
-        }
-    }
-
     public override void Heuristic(in ActionBuffers actionsOut)
     {
         float moveInput = 0;
@@ -90,40 +80,18 @@ public class pongAgent : Agent
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
+        // small living cost each step
+        AddReward(livingCost);
 
-        // === 1. Distance Shaping Reward ===
-        float distanceY = Mathf.Abs(ball.position.y - transform.position.y);
-        AddReward(-distanceY * 0.25f); // Mild penalty to encourage positioning
+        // move the paddle along x based on the network output
+        transform.localPosition += Vector3.right * actionBuffers.ContinuousActions[0]
+                                   * paddleSpeed * Time.deltaTime;
 
-        // === 2. Positive Reward: Paddle Hits Ball ===
-        if (paddleHitBall)
-        {
-            float relativeHitY = ball.position.y - transform.position.y;
-            float halfPaddleHeight = paddleHeight / 2.0f;
-
-            // Compute how close to the edge the hit occurred [0=center, 1=edge]
-            float edgeFactor = Mathf.Abs(relativeHitY) / halfPaddleHeight;
-            float edgeBonus = Mathf.Clamp01(edgeFactor); // Safety clamp
-
-            // Reward: +1 base + up to +1 for edge hit
-            AddReward(edgeBonus);
-            paddleHitBall = false;
-        }
-
-        // === 3. Negative Reward: Ball Missed Paddle ===
-  
-        // === 4. Optional: Penalize Unnecessary Movement ===
-     
-        // Move the paddle
-        transform.localPosition += Vector3.right * actionBuffers.ContinuousActions[0] * paddleSpeed * Time.deltaTime;
-
-        // Clamp paddle within boundaries
+        // clamp paddle within horizontal bounds
         float clampedX = Mathf.Clamp(transform.localPosition.x, -paddleBoundary, paddleBoundary);
         transform.localPosition = new Vector3(clampedX, transform.localPosition.y, transform.localPosition.z);
-        float velocity = lastX - transform.localPosition.x;
-        float movementReward = Mathf.Abs(velocity*Time.deltaTime);
-        AddReward(velocity < 1 ? -movementReward : movementReward); // Light penalty for jitter
-        lastX = transform.localPosition.x;
+
+        // no distance shaping, no movement penalty, no timer bonus
     }
 
     void GiveReward(float reward)
@@ -156,22 +124,32 @@ public class pongAgent : Agent
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("ball"))
+        if (collision.gameObject.CompareTag("ball"))
         {
-            AddReward(skibidiToilet);
+            // compute how close to the edge of the paddle the hit occurred
+            Vector3 ballPos = ballz.transform.localPosition;
+            Vector3 paddlePos = transform.localPosition;
+            float halfPaddleWidth = paddleHeight * 0.5f;  // paddleHeight was set in Initialize()
+
+            float relativeHitX = ballPos.x - paddlePos.x;
+            float edgeFactor = Mathf.Clamp01(Mathf.Abs(relativeHitX) / halfPaddleWidth);
+
+            // base hitReward plus extra for edge hits
+            float totalHit = hitReward + edgeMultiplier * edgeFactor;
+            AddReward(totalHit);
         }
     }
 
     public void AgentWonPoint()
     {
-        AddReward(flusher);
+        AddReward(hitReward);
         EndEpisode();
     }
 
 
     public void AgentLostPoint()
     {
-       AddReward(cameraMan);
+       AddReward(missPenalty);
        EndEpisode();
     }
 
