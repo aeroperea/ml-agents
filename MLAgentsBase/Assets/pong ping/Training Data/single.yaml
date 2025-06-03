@@ -5,7 +5,7 @@ behaviors:
     hyperparameters:
       batch_size: 2048
       buffer_size: 45056
-      learning_rate: 0.001
+      learning_rate: 0.00077
       beta: 0.0001
       epsilon: 0.14
       lambd: 0.95
@@ -36,7 +36,7 @@ behaviors:
           deterministic: false
       curiosity:
         gamma: 0.99
-        strength: 0.003
+        strength: 0.001
         network_settings:
           normalize: true
           hidden_units: 32
@@ -56,7 +56,7 @@ behaviors:
     threaded: true
     self_play: null
     behavioral_cloning:
-      demo_path: null #"C:\\Unity Projects\\Github\\ml-agents\\MLAgentsBase\\Recordings\\AeroPlaysPong.demo"
+      demo_path: "C:\\Unity Projects\\Github\\ml-agents\\MLAgentsBase\\Recordings\\AeroPlaysPong.demo"
       strength: 0.25
       steps: 500000
       batch_size: 64
@@ -65,8 +65,8 @@ env_settings:
   env_path: "C:\\Unity Projects\\Github\\ml-agents\\PongBuild\\UnityEnvironment.exe"
   # env_path: null
   env_args: null
-  base_port: 5004
-  num_envs: 8
+  base_port: 6000
+  num_envs: 33
   num_areas: 1
   seed: -1
   max_lifetime_restarts: 5
@@ -76,10 +76,10 @@ engine_settings:
   width: 84
   height: 84
   quality_level: 5
-  time_scale: 20
+  time_scale: 30
   target_frame_rate: -1
   capture_frame_rate: 60
-  no_graphics: false
+  no_graphics: true
 environment_parameters: null
 checkpoint_settings:
   run_id: pongping

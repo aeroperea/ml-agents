@@ -10,9 +10,19 @@ public class skibidiTrainer : MonoBehaviour
 
     public float goalZExtents = 21;
 
+    public float timer;
+    private float maxTime = 20f;
 
-     void Update()
+    private void Start()
+    {
+        timer = maxTime;
+    }
+
+    void Update()
      {
+        timer -= Time.deltaTime;
+        if (timer <= 0) EndRound();
+
         if(ball.transform.localPosition.z < negativeSideAgent.transform.localPosition.z)
         {
             ProcessScoredGoal(positiveSideAgent, negativeSideAgent);
@@ -31,6 +41,15 @@ public class skibidiTrainer : MonoBehaviour
 
         ball.ResetBall();
      }
+
+    //they both survived
+    private void EndRound()
+    {
+        positiveSideAgent.AgentWonPoint();
+        negativeSideAgent.AgentWonPoint();
+        ball.ResetBall();
+        timer = maxTime;
+    }
 
     private void OnDrawGizmos()
     {
