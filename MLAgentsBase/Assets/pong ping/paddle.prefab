@@ -67,7 +67,6 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -139,7 +138,7 @@ MonoBehaviour:
   m_Model: {fileID: 0}
   m_InferenceDevice: 0
   m_BehaviorType: 0
-  m_BehaviorName: PongAgent
+  m_BehaviorName: Pong
   TeamId: 0
   m_UseChildSensors: 1
   m_UseChildActuators: 1
@@ -167,7 +166,6 @@ MonoBehaviour:
   paddleSpeed: 10
   isPlayer1: 1
   controlsBall: 0
-  timerMax: 5
 --- !u!54 &4491175975991574529
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -12,10 +12,18 @@ public class Ballz : MonoBehaviour
     private Rigidbody rb;
 
     public Gradient colorGradient;
+
+    public AudioClip hitPaddleSFX;
+    public AudioClip hitBoundarySFX;
+
+    public bool soundOn = false;
+    private AudioSource audioSource;
+
     //public TextMeshProUGUI speedText;
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -26,6 +34,9 @@ public class Ballz : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
+
+        //currentMax = rb.velocity.magnitude > currentMax ? rb.velocity.magnitude : currentMax;
 
         direction.z = Mathf.Max(Mathf.Abs(direction.z), 0.2f) * Mathf.Sign(direction.z);
         // Maintain consistent speed
@@ -42,6 +53,8 @@ public class Ballz : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        //print("Collision Detected!");
+
         if (collision.gameObject.CompareTag("Paddle"))
         {
             // Reflect away from paddle and apply force
@@ -49,6 +62,7 @@ public class Ballz : MonoBehaviour
             direction = toBall;
             rb.linearVelocity = direction * speed;
             rb.AddForce(direction * paddleForce, ForceMode.Impulse);
+            if (soundOn) audioSource.PlayOneShot(hitPaddleSFX, 0.5f);
         }
         else
         {
@@ -56,6 +70,7 @@ public class Ballz : MonoBehaviour
             ContactPoint contact = collision.contacts[0];
             direction = Vector3.Reflect(direction, contact.normal);
             rb.linearVelocity = direction * paddleForce;
+            if (soundOn) audioSource.PlayOneShot(hitBoundarySFX, 0.1f);
             //rb.AddForce(direction * paddleForce, ForceMode.Impulse);
         }
     }
