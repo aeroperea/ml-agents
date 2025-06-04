@@ -2529,7 +2529,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &752694958
 Transform:
   m_ObjectHideFlags: 0
@@ -8441,10 +8441,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1117416815367485601, guid: 6842b7accb3cc2941be68dffdd48561e,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: d67787a8dd7753046b055f16a242fea3,
+        type: 3}
     - target: {fileID: 2441086394659554038, guid: 6842b7accb3cc2941be68dffdd48561e,
         type: 3}
       propertyPath: m_Name
       value: pong environment
+      objectReference: {fileID: 0}
+    - target: {fileID: 3217457819170243620, guid: 6842b7accb3cc2941be68dffdd48561e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3217457819170243620, guid: 6842b7accb3cc2941be68dffdd48561e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3217457819170243620, guid: 6842b7accb3cc2941be68dffdd48561e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3217457819170243620, guid: 6842b7accb3cc2941be68dffdd48561e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3217457819170243620, guid: 6842b7accb3cc2941be68dffdd48561e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 8177779547890288946, guid: 6842b7accb3cc2941be68dffdd48561e,
         type: 3}

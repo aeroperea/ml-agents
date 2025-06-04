@@ -51,17 +51,20 @@ public class Ballz : MonoBehaviour
         // print($"normalized speed: {normalizedSpeed}  current max {currentMax}"); 
     }
 
+    public void AddForceAndSetNewDirection(Vector3 forceDir)
+    {
+        direction = forceDir;
+        rb.linearVelocity = direction * speed;
+        rb.AddForce(direction * paddleForce, ForceMode.Impulse);
+    }
+
     void OnCollisionEnter(Collision collision)
     {
         //print("Collision Detected!");
 
         if (collision.gameObject.CompareTag("Paddle"))
         {
-            // Reflect away from paddle and apply force
-            Vector3 toBall = (transform.localPosition - collision.transform.localPosition).normalized;
-            direction = toBall;
-            rb.linearVelocity = direction * speed;
-            rb.AddForce(direction * paddleForce, ForceMode.Impulse);
+            // Reflect away from paddle and apply force done by the paddle
             if (soundOn) audioSource.PlayOneShot(hitPaddleSFX, 0.5f);
         }
         else

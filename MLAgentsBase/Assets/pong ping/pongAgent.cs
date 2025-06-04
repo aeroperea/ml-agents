@@ -9,8 +9,9 @@ public class pongAgent : Agent
     //variables
     float stepReward = 0; //reward for the current step
     float accumulatedReward = 0; //reward for episode
+
     float paddleHeight;
-    float lastAction;
+    float halfPaddleWidth;
 
     [SerializeField] Ballz ballz;
     
@@ -26,7 +27,7 @@ public class pongAgent : Agent
 
     string inputAxis = "Vertical";
 
-    const float hitReward = 1.5f;
+    const float hitReward = 1.25f;
     const float missPenalty = -2f;
     const float livingCost = -0.001f;
     const float edgeMultiplier = 0.25f;
@@ -34,10 +35,12 @@ public class pongAgent : Agent
     float timer = 0;
     public float timerMax = 5; 
     private Vector3 startingPosition;
+    private float ballDirMultiplier = 0.75f;
 
     public override void Initialize()
     {
         paddleHeight = transform.lossyScale.x;
+        halfPaddleWidth = paddleHeight * 0.5f;
         base.Initialize();
         startingPosition = transform.localPosition;
         ball = ballz.transform;
@@ -127,15 +130,16 @@ public class pongAgent : Agent
         if (collision.gameObject.CompareTag("ball"))
         {
             // compute how close to the edge of the paddle the hit occurred
-            Vector3 ballPos = ballz.transform.localPosition;
-            Vector3 paddlePos = transform.localPosition;
-            float halfPaddleWidth = paddleHeight * 0.5f;  // paddleHeight was set in Initialize()
+            Vector3 toBall = ball.localPosition - transform.localPosition;
+            float edgeFactor = Mathf.Clamp01(Mathf.Abs(toBall.x) / halfPaddleWidth);
 
-            float relativeHitX = ballPos.x - paddlePos.x;
-            float edgeFactor = Mathf.Clamp01(Mathf.Abs(relativeHitX) / halfPaddleWidth);
+            toBall = toBall.normalized;
+            ballz.AddForceAndSetNewDirection(toBall);
+            float ballDirDot = Vector3.Dot(toBall, transform.forward);
+            float ballDirDotFactor = ballDirDot > 0.5 ? 1 : ballDirDot;
 
             // base hitReward plus extra for edge hits
-            float totalHit = hitReward + edgeMultiplier * edgeFactor;
+            float totalHit = hitReward + edgeMultiplier * edgeFactor + ballDirMultiplier * ballDirDotFactor;
             AddReward(totalHit);
         }
     }
