@@ -1,5 +1,6 @@
 using UnityEngine;
 using Unity.MLAgents;
+using Physics = UnityEngine.Physics;
 
 namespace Unity.MLAgentsExamples
 {
@@ -37,33 +38,33 @@ namespace Unity.MLAgentsExamples
         public void Awake()
         {
             // Save the original values
-            m_OriginalGravity = Physics.gravity;
+            m_OriginalGravity = UnityEngine.Physics.gravity;
             m_OriginalFixedDeltaTime = Time.fixedDeltaTime;
             m_OriginalMaximumDeltaTime = Time.maximumDeltaTime;
-            m_OriginalSolverIterations = Physics.defaultSolverIterations;
-            m_OriginalSolverVelocityIterations = Physics.defaultSolverVelocityIterations;
-            m_OriginalReuseCollisionCallbacks = Physics.reuseCollisionCallbacks;
+            m_OriginalSolverIterations = UnityEngine.Physics.defaultSolverIterations;
+            m_OriginalSolverVelocityIterations = UnityEngine.Physics.defaultSolverVelocityIterations;
+            m_OriginalReuseCollisionCallbacks = UnityEngine.Physics.reuseCollisionCallbacks;
 
             // Override
-            Physics.gravity *= gravityMultiplier;
+            UnityEngine.Physics.gravity *= gravityMultiplier;
             Time.fixedDeltaTime = fixedDeltaTime;
             Time.maximumDeltaTime = maximumDeltaTime;
-            Physics.defaultSolverIterations = solverIterations;
-            Physics.defaultSolverVelocityIterations = solverVelocityIterations;
-            Physics.reuseCollisionCallbacks = reuseCollisionCallbacks;
+            UnityEngine.Physics.defaultSolverIterations = solverIterations;
+            UnityEngine.Physics.defaultSolverVelocityIterations = solverVelocityIterations;
+            UnityEngine.Physics.reuseCollisionCallbacks = reuseCollisionCallbacks;
 
             // Make sure the Academy singleton is initialized first, since it will create the SideChannels.
-            Academy.Instance.EnvironmentParameters.RegisterCallback("gravity", f => { Physics.gravity = new Vector3(0, -f, 0); });
+            Academy.Instance.EnvironmentParameters.RegisterCallback("gravity", f => { UnityEngine.Physics.gravity = new Vector3(0, -f, 0); });
         }
 
         public void OnDestroy()
         {
-            Physics.gravity = m_OriginalGravity;
+            UnityEngine.Physics.gravity = m_OriginalGravity;
             Time.fixedDeltaTime = m_OriginalFixedDeltaTime;
             Time.maximumDeltaTime = m_OriginalMaximumDeltaTime;
-            Physics.defaultSolverIterations = m_OriginalSolverIterations;
-            Physics.defaultSolverVelocityIterations = m_OriginalSolverVelocityIterations;
-            Physics.reuseCollisionCallbacks = m_OriginalReuseCollisionCallbacks;
+            UnityEngine.Physics.defaultSolverIterations = m_OriginalSolverIterations;
+            UnityEngine.Physics.defaultSolverVelocityIterations = m_OriginalSolverVelocityIterations;
+            UnityEngine.Physics.reuseCollisionCallbacks = m_OriginalReuseCollisionCallbacks;
         }
     }
 }

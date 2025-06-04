@@ -10,11 +10,10 @@ public class BrickSpawner : MonoBehaviour
     public int columnsSpawned;
     public int depthSpawned;
 
-
-    public Vector3 brickSpawnOrigin = new Vector3(0, 10, 0);
     public float bricksRowSpacing = 1.1f;
     public float brickColSpacing = 2.3f;
     public float bricksDepthSpacing = 1.1f;
+    [SerializeField] private Color gizmoColor = Color.blue  ;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -32,7 +31,7 @@ public class BrickSpawner : MonoBehaviour
             {
                 for(int y = 0; y < rowsSpawned; y++)
                 {
-                    Vector3 spawnPosition = brickSpawnOrigin + new Vector3(brickColSpacing * x, bricksRowSpacing * y, bricksDepthSpacing * z);
+                    Vector3 spawnPosition = transform.position + new Vector3(brickColSpacing * x, bricksRowSpacing * y, bricksDepthSpacing * z);
                     GameObject spawnedBrick = Instantiate(brickPrefab, spawnPosition, Quaternion.identity);
                 }
             }
@@ -43,5 +42,15 @@ public class BrickSpawner : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = gizmoColor;
+        float x = brickColSpacing * columnsSpawned;
+        float y = bricksRowSpacing * rowsSpawned;
+        float z = bricksDepthSpacing * depthSpawned;
+        Vector3 boxSize = new Vector3(x,y,z);
+        Gizmos.DrawWireCube(transform.position + boxSize * 0.5f, boxSize);
     }
 }
