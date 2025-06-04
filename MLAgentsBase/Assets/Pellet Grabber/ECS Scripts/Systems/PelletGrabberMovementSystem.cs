@@ -5,6 +5,13 @@ using Unity.Mathematics;
 
 partial struct PelletGrabberMovementSystem : ISystem
 {
+
+    [BurstCompile]
+    public void OnCreate(ref SystemState state)
+    {
+        state.RequireForUpdate<PelletGrabberMovement>();
+    }
+
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {

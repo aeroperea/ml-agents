@@ -4,22 +4,29 @@ using Unity.Mathematics;
 
 class SkibidiTrainerAuthoring : MonoBehaviour
 {
-    public float myFloat = 3;
+    public GameObject leftAgentGo;
+    public GameObject rightAgentGo;
+    public GameObject ballGo;
+
 
     class Baker : Baker<SkibidiTrainerAuthoring>
     {
         public override void Bake(SkibidiTrainerAuthoring authoring)
         {
             Entity entity = GetEntity(TransformUsageFlags.None);
-            AddComponent(entity, new SkibidiTrainer 
+            AddComponent(entity, new TrainerLink 
             {
-                myFloat = authoring.myFloat
+                leftAgent = GetEntity(authoring.leftAgentGo, TransformUsageFlags.Dynamic),
+                rightAgent = GetEntity(authoring.rightAgentGo, TransformUsageFlags.Dynamic),
+                ball = GetEntity(authoring.ballGo, TransformUsageFlags.Dynamic),
             });
         }
     }
 }
 
-public struct SkibidiTrainer : IComponentData
+public struct TrainerLink : IComponentData
 {
-    public float myFloat;
+    public Entity leftAgent;
+    public Entity rightAgent;
+    public Entity ball;
 }

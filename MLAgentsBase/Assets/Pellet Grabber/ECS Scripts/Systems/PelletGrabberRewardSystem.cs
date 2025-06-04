@@ -7,6 +7,14 @@ using Unity.Transforms;
 
 partial struct PelletGrabberRewardSystem : ISystem
 {
+
+    [BurstCompile]
+    public void OnCreate(ref SystemState state)
+    {
+        //var rewardQuery = 
+        //state.RequireForUpdate(rewardQuery);
+    }
+
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {

@@ -1239,7 +1239,7 @@ PrefabInstance:
     - target: {fileID: 3050540670218788118, guid: d4cbae5087563a94093484ee7af02761,
         type: 3}
       propertyPath: m_Name
-      value: paddle
+      value: paddle right
       objectReference: {fileID: 0}
     - target: {fileID: 4376820677925886253, guid: d4cbae5087563a94093484ee7af02761,
         type: 3}
@@ -1388,7 +1388,7 @@ PrefabInstance:
     - target: {fileID: 3050540670218788118, guid: d4cbae5087563a94093484ee7af02761,
         type: 3}
       propertyPath: m_Name
-      value: Paddle 1
+      value: 'Paddle Left '
       objectReference: {fileID: 0}
     - target: {fileID: 4376820677925886253, guid: d4cbae5087563a94093484ee7af02761,
         type: 3}
