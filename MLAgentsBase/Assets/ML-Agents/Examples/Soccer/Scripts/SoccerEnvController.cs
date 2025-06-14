@@ -7,7 +7,7 @@ public class SoccerEnvController : MonoBehaviour
     [System.Serializable]
     public class PlayerInfo
     {
-        public AgentSoccer Agent;
+        public MyAgentSoccer Agent;
         [HideInInspector]
         public Vector3 StartingPos;
         [HideInInspector]
@@ -60,7 +60,7 @@ public class SoccerEnvController : MonoBehaviour
             item.StartingPos = item.Agent.transform.position;
             item.StartingRot = item.Agent.transform.rotation;
             item.Rb = item.Agent.GetComponent<Rigidbody>();
-            if (item.Agent.team == Team.Blue)
+            if (item.Agent.team == MyAgentSoccer.Team.Blue)
             {
                 m_BlueAgentGroup.RegisterAgent(item.Agent);
             }
@@ -95,9 +95,9 @@ public class SoccerEnvController : MonoBehaviour
 
     }
 
-    public void GoalTouched(Team scoredTeam)
+    public void GoalTouched(MyAgentSoccer.Team scoredTeam)
     {
-        if (scoredTeam == Team.Blue)
+        if (scoredTeam == MyAgentSoccer.Team.Blue)
         {
             m_BlueAgentGroup.AddGroupReward(1 - (float)m_ResetTimer / MaxEnvironmentSteps);
             m_PurpleAgentGroup.AddGroupReward(-1);

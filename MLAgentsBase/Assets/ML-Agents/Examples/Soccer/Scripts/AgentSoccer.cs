@@ -100,7 +100,7 @@ public class AgentSoccer : Agent
         var dirToGo = Vector3.zero;
         var rotateDir = Vector3.zero;
 
-        m_KickPower = 0f;
+        m_KickPower = 0;
 
         var forwardAxis = act[0];
         var rightAxis = act[1];

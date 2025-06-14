@@ -1,0 +1,29 @@
+{
+    "Striker": {
+        "checkpoints": [
+            {
+                "steps": 8198,
+                "file_path": "results\\stikerg00\\Striker\\Striker-8198.onnx",
+                "reward": 225.2200053036213,
+                "creation_time": 1749913346.5692701,
+                "auxillary_file_paths": [
+                    "results\\stikerg00\\Striker\\Striker-8198.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 8198,
+            "file_path": "results\\stikerg00\\Striker.onnx",
+            "reward": 225.2200053036213,
+            "creation_time": 1749913346.5692701,
+            "auxillary_file_paths": [
+                "results\\stikerg00\\Striker\\Striker-8198.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.4.1+cu124"
+    }
+}

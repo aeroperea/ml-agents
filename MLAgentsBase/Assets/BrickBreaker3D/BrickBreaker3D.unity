@@ -243,12 +243,10 @@ MonoBehaviour:
   brickPrefab: {fileID: 5663730556803415392, guid: 483b21fda732a2d40a2e684906955883,
     type: 3}
   rowsSpawned: 20
-  columnsSpawned: 10000
-  depthSpawned: 20
+  columnsSpawned: 50
+  depthSpawned: 50
   brickSpawnOrigin: {x: 0, y: 10, z: 0}
-  bricksRowSpacing: 1.1
-  brickColSpacing: 2.3
-  bricksDepthSpacing: 1.1
+  gmizmoColor: {r: 0, g: 0, b: 1, a: 0.5}
 --- !u!4 &360940097
 Transform:
   m_ObjectHideFlags: 0
@@ -258,7 +256,7 @@ Transform:
   m_GameObject: {fileID: 360940095}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.21625912, y: 5.4792604, z: -1.7527027}
+  m_LocalPosition: {x: 0.21625912, y: 52.9, z: -1.7527027}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

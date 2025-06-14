@@ -44,8 +44,7 @@ public partial struct PelletGrabberRewardJob : IJobEntity
 
         float weightedMovementToDot = math.dot(pelletGrabber.toPelletNormalized, pelletGrabberMovement.moveInput) * 2.1f;
         pelletGrabber.reward += weightedMovementToDot * math.abs(weightedMovementToDot);
-        //UnityEngine.Debug.Log($"reward {pelletGrabber.reward}   to pellet {pelletGrabber.toPelletNormalized} move input {pelletGrabberMovement.moveInput} \n " +
-        //    $"                 relativeDistance {relativeDistance} toPellet {toPellet}");
+        UnityEngine.Debug.Log($"reward {pelletGrabber.reward}   to pellet {pelletGrabber.toPelletNormalized} move input {pelletGrabberMovement.moveInput} \nrelativeDistance {relativeDistance} toPellet {toPellet}");
 
         pelletGrabber.reward += (1 - relativeDistance) * 0.33f;
         //pelletGrabber.reward += math.log(1.44f + (1 - relativeDistance) * 9f) * 0.1f;
