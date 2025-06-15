@@ -1,0 +1,62 @@
+{
+    "Goalie": {
+        "checkpoints": [
+            {
+                "steps": 499215,
+                "file_path": "results\\strikergoalie00\\Goalie\\Goalie-499215.onnx",
+                "reward": -60.13240194320679,
+                "creation_time": 1749934661.1857927,
+                "auxillary_file_paths": [
+                    "results\\strikergoalie00\\Goalie\\Goalie-499215.pt"
+                ]
+            },
+            {
+                "steps": 601505,
+                "file_path": "results\\strikergoalie00\\Goalie\\Goalie-601505.onnx",
+                "reward": 262.3615434820002,
+                "creation_time": 1749935485.766848,
+                "auxillary_file_paths": [
+                    "results\\strikergoalie00\\Goalie\\Goalie-601505.pt"
+                ]
+            }
+        ],
+        "elo": 1178.3641529404506,
+        "final_checkpoint": {
+            "steps": 601505,
+            "file_path": "results\\strikergoalie00\\Goalie.onnx",
+            "reward": 262.3615434820002,
+            "creation_time": 1749935485.766848,
+            "auxillary_file_paths": [
+                "results\\strikergoalie00\\Goalie\\Goalie-601505.pt"
+            ]
+        }
+    },
+    "Striker": {
+        "elo": 1249.671441931223,
+        "checkpoints": [
+            {
+                "steps": 428650,
+                "file_path": "results\\strikergoalie00\\Striker\\Striker-428650.onnx",
+                "reward": 200.6151123046875,
+                "creation_time": 1749939718.3290572,
+                "auxillary_file_paths": [
+                    "results\\strikergoalie00\\Striker\\Striker-428650.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 428650,
+            "file_path": "results\\strikergoalie00\\Striker.onnx",
+            "reward": 200.6151123046875,
+            "creation_time": 1749939718.3290572,
+            "auxillary_file_paths": [
+                "results\\strikergoalie00\\Striker\\Striker-428650.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.4.1+cu124"
+    }
+}
