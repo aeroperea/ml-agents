@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Pellet Grabber/Pellet Grabber ECS.unity
     guid: c92625ba535f80b4da4fb57ec252f48b
   - enabled: 1
-    path: Assets/pong ping/pong ping.unity
+    path: Assets/pong ping/pong ping scenes/pong ping.unity
     guid: 0d35a6cbe1f61334195e246a3eae2d38
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
