@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.Sentis;
+
 using System.IO;
 using Unity.MLAgents;
 using Unity.MLAgents.Policies;
@@ -44,7 +44,7 @@ namespace Unity.MLAgentsExamples
         private List<string> m_OverrideExtensions = new List<string>();
 
         // Cached loaded ModelAssets, with the behavior name as the key.
-        Dictionary<string, ModelAsset> m_CachedModels = new Dictionary<string, ModelAsset>();
+        Dictionary<string, Unity.InferenceEngine.ModelAsset> m_CachedModels = new Dictionary<string, Unity.InferenceEngine.ModelAsset>();
 
         // Max episodes to run. Only used if > 0
         // Will default to 1 if override models are specified, otherwise 0.
@@ -235,7 +235,7 @@ namespace Unity.MLAgentsExamples
             m_NumSteps++;
         }
 
-        public ModelAsset GetModelForBehaviorName(string behaviorName)
+        public Unity.InferenceEngine.ModelAsset GetModelForBehaviorName(string behaviorName)
         {
             if (m_CachedModels.ContainsKey(behaviorName))
             {
@@ -299,9 +299,9 @@ namespace Unity.MLAgentsExamples
             return asset;
         }
 
-        ModelAsset LoadSentisModel(byte[] rawModel)
+        Unity.InferenceEngine.ModelAsset LoadSentisModel(byte[] rawModel)
         {
-            var asset = ScriptableObject.CreateInstance<ModelAsset>();
+            var asset = ScriptableObject.CreateInstance<Unity.InferenceEngine.ModelAsset>();
             // asset.modelAssetData = ScriptableObject.CreateInstance<ModelAssetData>();
             // asset.modelAssetData.value = rawModel;
             return asset;
