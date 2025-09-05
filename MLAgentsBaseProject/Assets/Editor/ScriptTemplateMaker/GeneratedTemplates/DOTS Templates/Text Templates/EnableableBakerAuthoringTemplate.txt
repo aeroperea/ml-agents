@@ -1,0 +1,20 @@
+using Unity.Entities;
+using UnityEngine;
+
+class #SCRIPTNAME# : MonoBehaviour
+{
+
+    class Baker : Baker<#SCRIPTNAME#>
+    {
+        public override void Bake(#SCRIPTNAME# authoring)
+        {
+            Entity entity = GetEntity(TransformUsageFlags.None);
+            AddComponent(entity, new #COMPONENTNAME#());
+        }
+    }
+}
+
+public struct #COMPONENTNAME# : IComponentData, IEnableableComponent
+{
+    
+}

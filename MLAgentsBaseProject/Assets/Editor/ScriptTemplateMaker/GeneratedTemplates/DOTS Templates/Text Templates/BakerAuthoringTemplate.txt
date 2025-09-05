@@ -1,0 +1,25 @@
+using Unity.Entities;
+using UnityEngine;
+using Unity.Mathematics;
+
+class #SCRIPTNAME# : MonoBehaviour
+{
+    public float myFloat = 3;
+
+    class Baker : Baker<#SCRIPTNAME#>
+    {
+        public override void Bake(#SCRIPTNAME# authoring)
+        {
+            Entity entity = GetEntity(TransformUsageFlags. );
+            AddComponent(entity, new #COMPONENTNAME# 
+            {
+                myFloat = authoring.myFloat
+            });
+        }
+    }
+}
+
+public struct #COMPONENTNAME# : IComponentData
+{
+    public float myFloat;
+}
