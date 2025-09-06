@@ -1,0 +1,13 @@
+# unity noise
+[Ll]ibrary
+[Tt]emp
+[Ll]ogs
+[Oo]bj
+UserSettings
+MemoryCaptures
+[Bb]uilds/*/*.pdb
+[Bb]uilds/*/*.ilk
+
+# our pipeline tokens
+.sync_manifest.sha256
+.build_token

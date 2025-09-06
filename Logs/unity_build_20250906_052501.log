@@ -1,0 +1,26 @@
+Unity Editor version:    6000.0.57f1 (b7b9860b7bbd)
+Branch:                  6000.0/staging
+Build type:              Release
+Batch mode:              YES
+System name:             Linux
+Distro version:          #79-Ubuntu SMP PREEMPT_DYNAMIC Tue Aug 12 14:42:46 UTC 2025
+Kernel version:          6.8.0-79-generic
+Architecture:            x86_64
+Available memory:        32006 MB
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Initialize udev device monitor.
+[Licensing::IpcConnector] Connection to channel LicenseClient-aero refused
+[Licensing::Module] Successfully launched the LicensingClient (PId: 1944093)
+
+COMMAND LINE ARGUMENTS:
+unity
+-batchmode
+-nographics
+-quit
+-projectPath
+/home/aero/Unity/Projects/AI/shared/ml-agents
+-buildLinux64Player
+/home/aero/Unity/Projects/AI/shared/ml-agents/builds/pong-ping/Env.x86_64
+-logFile
+/home/aero/Unity/Projects/AI/shared/ml-agents/Logs/unity_build_20250906_052501.log
+Couldn't set project path to: /home/aero/home/aero/Unity/Projects/AI/shared/ml-agents
