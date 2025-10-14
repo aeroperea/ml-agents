@@ -7,8 +7,19 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.ai.inference": {
+      "version": "2.2.1",
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.burst": "1.8.17",
+        "com.unity.collections": "2.4.3",
+        "com.unity.modules.imageconversion": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.ai.navigation": {
-      "version": "2.0.7",
+      "version": "2.0.9",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -26,7 +37,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.burst": {
-      "version": "1.8.21",
+      "version": "1.8.25",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -88,7 +99,7 @@
       "dependencies": {}
     },
     "com.unity.formats.fbx": {
-      "version": "5.1.1",
+      "version": "5.1.4",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -98,7 +109,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.rider": {
-      "version": "3.0.36",
+      "version": "3.0.38",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -116,7 +127,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.inputsystem": {
-      "version": "1.14.0",
+      "version": "1.14.2",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -250,7 +261,7 @@
       }
     },
     "com.unity.scriptablebuildpipeline": {
-      "version": "2.4.0",
+      "version": "2.4.2",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -267,15 +278,12 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.sentis": {
-      "version": "2.1.2",
+      "version": "2.2.0",
       "depth": 1,
-      "source": "registry",
+      "source": "builtin",
       "dependencies": {
-        "com.unity.burst": "1.8.17",
-        "com.unity.collections": "2.4.3",
-        "com.unity.modules.imageconversion": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
+        "com.unity.ai.inference": "2.2.1"
+      }
     },
     "com.unity.serialization": {
       "version": "3.1.2",
@@ -313,7 +321,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.test-framework": {
-      "version": "1.5.1",
+      "version": "1.6.0",
       "depth": 0,
       "source": "builtin",
       "dependencies": {
@@ -323,7 +331,7 @@
       }
     },
     "com.unity.test-framework.performance": {
-      "version": "3.1.0",
+      "version": "3.2.0",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -333,7 +341,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.timeline": {
-      "version": "1.8.7",
+      "version": "1.8.9",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -341,6 +349,16 @@
         "com.unity.modules.director": "1.0.0",
         "com.unity.modules.animation": "1.0.0",
         "com.unity.modules.particlesystem": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.toolchain.linux-x86_64": {
+      "version": "2.0.10",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.sysroot": "2.0.10",
+        "com.unity.sysroot.linux-x86_64": "2.0.9"
       },
       "url": "https://packages.unity.com"
     },
