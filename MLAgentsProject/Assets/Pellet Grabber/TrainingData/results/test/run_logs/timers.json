@@ -1,0 +1,42 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1760885863",
+        "python_version": "3.10.12 (main, Jul  5 2023, 18:54:27) [GCC 11.2.0]",
+        "command_line_arguments": "/home/aero/miniconda3/envs/mlagents/bin/mlagents-learn configs/testconfig.yaml --run-id=test",
+        "mlagents_version": "1.1.0",
+        "mlagents_envs_version": "1.1.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "2.9.0+cu128",
+        "numpy_version": "1.23.5",
+        "end_time_seconds": "1760885871"
+    },
+    "total": 7.970379417999993,
+    "count": 1,
+    "self": 0.004044538000016473,
+    "children": {
+        "run_training.setup": {
+            "total": 0.013022016999912012,
+            "count": 1,
+            "self": 0.013022016999912012
+        },
+        "TrainerController.start_learning": {
+            "total": 7.953312863000065,
+            "count": 1,
+            "self": 4.145999992033467e-05,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 7.9532560090001425,
+                    "count": 1,
+                    "self": 7.9532560090001425
+                },
+                "TrainerController._save_models": {
+                    "total": 1.5394000001833774e-05,
+                    "count": 1,
+                    "self": 1.5394000001833774e-05
+                }
+            }
+        }
+    }
+}

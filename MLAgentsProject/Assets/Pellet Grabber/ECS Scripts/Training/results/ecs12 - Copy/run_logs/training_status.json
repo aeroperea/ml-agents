@@ -1,0 +1,155 @@
+{
+    "PelletGrabberECS": {
+        "checkpoints": [
+            {
+                "steps": 499945,
+                "file_path": "results\\ecs12\\PelletGrabberECS\\PelletGrabberECS-499945.onnx",
+                "reward": -19.191733360290527,
+                "creation_time": 1739433481.5744867,
+                "auxillary_file_paths": [
+                    "results\\ecs12\\PelletGrabberECS\\PelletGrabberECS-499945.pt"
+                ]
+            },
+            {
+                "steps": 999989,
+                "file_path": "results\\ecs12\\PelletGrabberECS\\PelletGrabberECS-999989.onnx",
+                "reward": -28.950218200683594,
+                "creation_time": 1739433674.9502912,
+                "auxillary_file_paths": [
+                    "results\\ecs12\\PelletGrabberECS\\PelletGrabberECS-999989.pt"
+                ]
+            },
+            {
+                "steps": 1499987,
+                "file_path": "results\\ecs12\\PelletGrabberECS\\PelletGrabberECS-1499987.onnx",
+                "reward": -10.44170199907743,
+                "creation_time": 1739433936.2969592,
+                "auxillary_file_paths": [
+                    "results\\ecs12\\PelletGrabberECS\\PelletGrabberECS-1499987.pt"
+                ]
+            },
+            {
+                "steps": 1999983,
+                "file_path": "results\\ecs12\\PelletGrabberECS\\PelletGrabberECS-1999983.onnx",
+                "reward": -123.53232879851832,
+                "creation_time": 1739434147.6700993,
+                "auxillary_file_paths": [
+                    "results\\ecs12\\PelletGrabberECS\\PelletGrabberECS-1999983.pt"
+                ]
+            },
+            {
+                "steps": 2499965,
+                "file_path": "results\\ecs12\\PelletGrabberECS\\PelletGrabberECS-2499965.onnx",
+                "reward": 4.45550167805528,
+                "creation_time": 1739434397.8878171,
+                "auxillary_file_paths": [
+                    "results\\ecs12\\PelletGrabberECS\\PelletGrabberECS-2499965.pt"
+                ]
+            },
+            {
+                "steps": 2999978,
+                "file_path": "results\\ecs12\\PelletGrabberECS\\PelletGrabberECS-2999978.onnx",
+                "reward": 9.401990660212256,
+                "creation_time": 1739434603.456602,
+                "auxillary_file_paths": [
+                    "results\\ecs12\\PelletGrabberECS\\PelletGrabberECS-2999978.pt"
+                ]
+            },
+            {
+                "steps": 3499997,
+                "file_path": "results\\ecs12\\PelletGrabberECS\\PelletGrabberECS-3499997.onnx",
+                "reward": 31.941727326029824,
+                "creation_time": 1739434867.901037,
+                "auxillary_file_paths": [
+                    "results\\ecs12\\PelletGrabberECS\\PelletGrabberECS-3499997.pt"
+                ]
+            },
+            {
+                "steps": 3999937,
+                "file_path": "results\\ecs12\\PelletGrabberECS\\PelletGrabberECS-3999937.onnx",
+                "reward": 33.76961725950241,
+                "creation_time": 1739435082.4024296,
+                "auxillary_file_paths": [
+                    "results\\ecs12\\PelletGrabberECS\\PelletGrabberECS-3999937.pt"
+                ]
+            },
+            {
+                "steps": 4499958,
+                "file_path": "results\\ecs12\\PelletGrabberECS\\PelletGrabberECS-4499958.onnx",
+                "reward": 60.6487358749503,
+                "creation_time": 1739435353.6947005,
+                "auxillary_file_paths": [
+                    "results\\ecs12\\PelletGrabberECS\\PelletGrabberECS-4499958.pt"
+                ]
+            },
+            {
+                "steps": 4999971,
+                "file_path": "results\\ecs12\\PelletGrabberECS\\PelletGrabberECS-4999971.onnx",
+                "reward": null,
+                "creation_time": 1739435575.748368,
+                "auxillary_file_paths": [
+                    "results\\ecs12\\PelletGrabberECS\\PelletGrabberECS-4999971.pt"
+                ]
+            },
+            {
+                "steps": 5499993,
+                "file_path": "results\\ecs12\\PelletGrabberECS\\PelletGrabberECS-5499993.onnx",
+                "reward": 88.76594453005859,
+                "creation_time": 1739435760.9142985,
+                "auxillary_file_paths": [
+                    "results\\ecs12\\PelletGrabberECS\\PelletGrabberECS-5499993.pt"
+                ]
+            },
+            {
+                "steps": 5999974,
+                "file_path": "results\\ecs12\\PelletGrabberECS\\PelletGrabberECS-5999974.onnx",
+                "reward": 109.51322130402879,
+                "creation_time": 1739435984.0637841,
+                "auxillary_file_paths": [
+                    "results\\ecs12\\PelletGrabberECS\\PelletGrabberECS-5999974.pt"
+                ]
+            },
+            {
+                "steps": 6499950,
+                "file_path": "results\\ecs12\\PelletGrabberECS\\PelletGrabberECS-6499950.onnx",
+                "reward": 124.08943016758872,
+                "creation_time": 1739436236.6449153,
+                "auxillary_file_paths": [
+                    "results\\ecs12\\PelletGrabberECS\\PelletGrabberECS-6499950.pt"
+                ]
+            },
+            {
+                "steps": 6999960,
+                "file_path": "results\\ecs12\\PelletGrabberECS\\PelletGrabberECS-6999960.onnx",
+                "reward": 138.03112955560013,
+                "creation_time": 1739436457.2049308,
+                "auxillary_file_paths": [
+                    "results\\ecs12\\PelletGrabberECS\\PelletGrabberECS-6999960.pt"
+                ]
+            },
+            {
+                "steps": 7042328,
+                "file_path": "results\\ecs12\\PelletGrabberECS\\PelletGrabberECS-7042328.onnx",
+                "reward": 138.03112955560013,
+                "creation_time": 1739436460.3984745,
+                "auxillary_file_paths": [
+                    "results\\ecs12\\PelletGrabberECS\\PelletGrabberECS-7042328.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 7042328,
+            "file_path": "results\\ecs12\\PelletGrabberECS.onnx",
+            "reward": 138.03112955560013,
+            "creation_time": 1739436460.3984745,
+            "auxillary_file_paths": [
+                "results\\ecs12\\PelletGrabberECS\\PelletGrabberECS-7042328.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.4.1+cu124"
+    }
+}

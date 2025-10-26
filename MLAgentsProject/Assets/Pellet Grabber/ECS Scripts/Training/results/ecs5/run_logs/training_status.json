@@ -1,0 +1,56 @@
+{
+    "PelletGrabberECS": {
+        "checkpoints": [
+            {
+                "steps": 499965,
+                "file_path": "results\\ecs5\\PelletGrabberECS\\PelletGrabberECS-499965.onnx",
+                "reward": 14.902796005623543,
+                "creation_time": 1739104381.9093206,
+                "auxillary_file_paths": [
+                    "results\\ecs5\\PelletGrabberECS\\PelletGrabberECS-499965.pt"
+                ]
+            },
+            {
+                "steps": 999965,
+                "file_path": "results\\ecs5\\PelletGrabberECS\\PelletGrabberECS-999965.onnx",
+                "reward": 39.99469698007942,
+                "creation_time": 1739104589.708431,
+                "auxillary_file_paths": [
+                    "results\\ecs5\\PelletGrabberECS\\PelletGrabberECS-999965.pt"
+                ]
+            },
+            {
+                "steps": 1499976,
+                "file_path": "results\\ecs5\\PelletGrabberECS\\PelletGrabberECS-1499976.onnx",
+                "reward": 78.38944809479702,
+                "creation_time": 1739104807.899622,
+                "auxillary_file_paths": [
+                    "results\\ecs5\\PelletGrabberECS\\PelletGrabberECS-1499976.pt"
+                ]
+            },
+            {
+                "steps": 1549816,
+                "file_path": "results\\ecs5\\PelletGrabberECS\\PelletGrabberECS-1549816.onnx",
+                "reward": 84.02519149780274,
+                "creation_time": 1739104843.9752522,
+                "auxillary_file_paths": [
+                    "results\\ecs5\\PelletGrabberECS\\PelletGrabberECS-1549816.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1549816,
+            "file_path": "results\\ecs5\\PelletGrabberECS.onnx",
+            "reward": 84.02519149780274,
+            "creation_time": 1739104843.9752522,
+            "auxillary_file_paths": [
+                "results\\ecs5\\PelletGrabberECS\\PelletGrabberECS-1549816.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.4.1+cu124"
+    }
+}

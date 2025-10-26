@@ -1,0 +1,173 @@
+{
+    "PelletGrabberECS": {
+        "checkpoints": [
+            {
+                "steps": 499991,
+                "file_path": "results/test/PelletGrabberECS/PelletGrabberECS-499991.onnx",
+                "reward": 26.254185676574707,
+                "creation_time": 1761486507.0911868,
+                "auxillary_file_paths": [
+                    "results/test/PelletGrabberECS/PelletGrabberECS-499991.pt"
+                ]
+            },
+            {
+                "steps": 728382,
+                "file_path": "results/test/PelletGrabberECS/PelletGrabberECS-728382.onnx",
+                "reward": -166.7850501092265,
+                "creation_time": 1761486558.4908226,
+                "auxillary_file_paths": [
+                    "results/test/PelletGrabberECS/PelletGrabberECS-728382.pt"
+                ]
+            },
+            {
+                "steps": 862532,
+                "file_path": "results/test/PelletGrabberECS/PelletGrabberECS-862532.onnx",
+                "reward": null,
+                "creation_time": 1761488284.7829568,
+                "auxillary_file_paths": [
+                    "results/test/PelletGrabberECS/PelletGrabberECS-862532.pt"
+                ]
+            },
+            {
+                "steps": 999970,
+                "file_path": "results/test/PelletGrabberECS/PelletGrabberECS-999970.onnx",
+                "reward": 45.19813944673538,
+                "creation_time": 1761488517.6447449,
+                "auxillary_file_paths": [
+                    "results/test/PelletGrabberECS/PelletGrabberECS-999970.pt"
+                ]
+            },
+            {
+                "steps": 1499944,
+                "file_path": "results/test/PelletGrabberECS/PelletGrabberECS-1499944.onnx",
+                "reward": 34.09137710818538,
+                "creation_time": 1761488616.8257053,
+                "auxillary_file_paths": [
+                    "results/test/PelletGrabberECS/PelletGrabberECS-1499944.pt"
+                ]
+            },
+            {
+                "steps": 1999963,
+                "file_path": "results/test/PelletGrabberECS/PelletGrabberECS-1999963.onnx",
+                "reward": -81.41253769939595,
+                "creation_time": 1761488735.8164492,
+                "auxillary_file_paths": [
+                    "results/test/PelletGrabberECS/PelletGrabberECS-1999963.pt"
+                ]
+            },
+            {
+                "steps": 2499942,
+                "file_path": "results/test/PelletGrabberECS/PelletGrabberECS-2499942.onnx",
+                "reward": 38.34438655897975,
+                "creation_time": 1761488885.4501338,
+                "auxillary_file_paths": [
+                    "results/test/PelletGrabberECS/PelletGrabberECS-2499942.pt"
+                ]
+            },
+            {
+                "steps": 2999995,
+                "file_path": "results/test/PelletGrabberECS/PelletGrabberECS-2999995.onnx",
+                "reward": 47.939433050325334,
+                "creation_time": 1761488991.5725353,
+                "auxillary_file_paths": [
+                    "results/test/PelletGrabberECS/PelletGrabberECS-2999995.pt"
+                ]
+            },
+            {
+                "steps": 3499955,
+                "file_path": "results/test/PelletGrabberECS/PelletGrabberECS-3499955.onnx",
+                "reward": 6.252468855690215,
+                "creation_time": 1761489101.3709605,
+                "auxillary_file_paths": [
+                    "results/test/PelletGrabberECS/PelletGrabberECS-3499955.pt"
+                ]
+            },
+            {
+                "steps": 3999963,
+                "file_path": "results/test/PelletGrabberECS/PelletGrabberECS-3999963.onnx",
+                "reward": 54.42564418725336,
+                "creation_time": 1761489247.174022,
+                "auxillary_file_paths": [
+                    "results/test/PelletGrabberECS/PelletGrabberECS-3999963.pt"
+                ]
+            },
+            {
+                "steps": 4499948,
+                "file_path": "results/test/PelletGrabberECS/PelletGrabberECS-4499948.onnx",
+                "reward": 79.3545745098926,
+                "creation_time": 1761489360.2321994,
+                "auxillary_file_paths": [
+                    "results/test/PelletGrabberECS/PelletGrabberECS-4499948.pt"
+                ]
+            },
+            {
+                "steps": 4999959,
+                "file_path": "results/test/PelletGrabberECS/PelletGrabberECS-4999959.onnx",
+                "reward": 90.74564835324861,
+                "creation_time": 1761489494.9458356,
+                "auxillary_file_paths": [
+                    "results/test/PelletGrabberECS/PelletGrabberECS-4999959.pt"
+                ]
+            },
+            {
+                "steps": 5499971,
+                "file_path": "results/test/PelletGrabberECS/PelletGrabberECS-5499971.onnx",
+                "reward": 116.26529758854916,
+                "creation_time": 1761489612.105502,
+                "auxillary_file_paths": [
+                    "results/test/PelletGrabberECS/PelletGrabberECS-5499971.pt"
+                ]
+            },
+            {
+                "steps": 5999992,
+                "file_path": "results/test/PelletGrabberECS/PelletGrabberECS-5999992.onnx",
+                "reward": 139.3545384724935,
+                "creation_time": 1761489754.7518694,
+                "auxillary_file_paths": [
+                    "results/test/PelletGrabberECS/PelletGrabberECS-5999992.pt"
+                ]
+            },
+            {
+                "steps": 6499995,
+                "file_path": "results/test/PelletGrabberECS/PelletGrabberECS-6499995.onnx",
+                "reward": 144.561873106523,
+                "creation_time": 1761489917.4168148,
+                "auxillary_file_paths": [
+                    "results/test/PelletGrabberECS/PelletGrabberECS-6499995.pt"
+                ]
+            },
+            {
+                "steps": 6999971,
+                "file_path": "results/test/PelletGrabberECS/PelletGrabberECS-6999971.onnx",
+                "reward": 153.51658543163623,
+                "creation_time": 1761490045.7998965,
+                "auxillary_file_paths": [
+                    "results/test/PelletGrabberECS/PelletGrabberECS-6999971.pt"
+                ]
+            },
+            {
+                "steps": 7000081,
+                "file_path": "results/test/PelletGrabberECS/PelletGrabberECS-7000081.onnx",
+                "reward": 153.96218432198052,
+                "creation_time": 1761490045.8287137,
+                "auxillary_file_paths": [
+                    "results/test/PelletGrabberECS/PelletGrabberECS-7000081.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 7000081,
+            "file_path": "results/test/PelletGrabberECS.onnx",
+            "reward": 153.96218432198052,
+            "creation_time": 1761490045.8287137,
+            "auxillary_file_paths": [
+                "results/test/PelletGrabberECS/PelletGrabberECS-7000081.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.1.1+cu121"
+    }
+}
