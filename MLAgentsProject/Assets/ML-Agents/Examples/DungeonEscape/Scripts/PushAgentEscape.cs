@@ -68,6 +68,16 @@ public class PushAgentEscape : Agent
             ForceMode.VelocityChange);
     }
 
+    public void HandleAttack(ActionSegment<int> act)
+    {
+        var action = act[1];
+
+        if(action == 1)
+        {
+            // we want to attack
+        }
+    }
+
     /// <summary>
     /// Called every step of the engine. Here the agent takes an action.
     /// </summary>
