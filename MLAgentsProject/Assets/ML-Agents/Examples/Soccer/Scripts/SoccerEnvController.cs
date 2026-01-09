@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Unity.MLAgents;
 using UnityEngine;
+using TMPro;
 
 public class SoccerEnvController : MonoBehaviour
 {
@@ -45,6 +46,10 @@ public class SoccerEnvController : MonoBehaviour
     private SimpleMultiAgentGroup m_PurpleAgentGroup;
 
     private int m_ResetTimer;
+
+    [Header("My Vars")]
+    [SerializeField] private TextMeshProUGUI scoreText;
+    private int blueScore, purpleScore;
 
     void Start()
     {
