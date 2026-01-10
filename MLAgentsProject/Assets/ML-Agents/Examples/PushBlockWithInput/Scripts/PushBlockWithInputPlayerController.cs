@@ -1,4 +1,4 @@
-using Unity.MLAgents.Input;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,7 +18,7 @@ using UnityEngine.InputSystem;
 /// need to share the instance of the generated C# <see cref="IInputActionCollection2"/> (named <see cref="m_PushBlockActions"/>
 /// here) in order to ensure that all of your actions are bound correctly for ml-agents training and inference.
 /// </summary>
-public class PushBlockWithInputPlayerController : MonoBehaviour, IInputActionAssetProvider
+public class PushBlockWithInputPlayerController : MonoBehaviour, Unity.MLAgents.Input.IInputActionAssetProvider
 {
 
     PushBlockWithInputSettings m_PushBlockSettings;
@@ -30,7 +30,7 @@ public class PushBlockWithInputPlayerController : MonoBehaviour, IInputActionAss
 
     void Awake()
     {
-        m_PushBlockSettings = FindFirstObjectByType<PushBlockWithInputSettings>();
+        m_PushBlockSettings = FindObjectOfType<PushBlockWithInputSettings>();
         LazyInitializeActions();
 
         // Cache the agent rigidbody

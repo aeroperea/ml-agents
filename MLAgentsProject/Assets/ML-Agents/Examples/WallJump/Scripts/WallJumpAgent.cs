@@ -3,7 +3,7 @@
 using System.Collections;
 using UnityEngine;
 using Unity.MLAgents;
-using Unity.InferenceEngine;
+
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 using Unity.MLAgentsExamples;
@@ -14,11 +14,11 @@ public class WallJumpAgent : Agent
     // Depending on this value, the wall will have different height
     int m_Configuration;
     // Brain to use when no wall is present
-    public ModelAsset noWallBrain;
+    public Unity.InferenceEngine.ModelAsset noWallBrain;
     // Brain to use when a jumpable wall is present
-    public ModelAsset smallWallBrain;
+    public Unity.InferenceEngine.ModelAsset smallWallBrain;
     // Brain to use when a wall requiring a block to jump over is present
-    public ModelAsset bigWallBrain;
+    public Unity.InferenceEngine.ModelAsset bigWallBrain;
 
     public GameObject ground;
     public GameObject spawnArea;
@@ -52,7 +52,7 @@ public class WallJumpAgent : Agent
 
     public override void Initialize()
     {
-        m_WallJumpSettings = FindFirstObjectByType<WallJumpSettings>();
+        m_WallJumpSettings = FindObjectOfType<WallJumpSettings>();
         m_Configuration = Random.Range(0, 5);
 
         m_AgentRb = GetComponent<Rigidbody>();
