@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using TMPro;
-
+using Unity.InferenceEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Policies;
 using UnityEditor;
@@ -37,7 +37,7 @@ public class ModelCarousel : MonoBehaviour
     public bool m_ResetAgentOnModelChange = false;
     public int m_SecondsBetweenSwitches = 10;
     public float m_TimeScaleOverride = 0.0f;
-    public List<Unity.InferenceEngine.ModelAsset> m_Models = new List<Unity.InferenceEngine.ModelAsset>();
+    public List<ModelAsset> m_Models = new List<ModelAsset>();
     public bool m_ShowStepNumber = true;
     public int m_StepNumberRounding = 10000;
 
@@ -45,7 +45,7 @@ public class ModelCarousel : MonoBehaviour
     private int m_CurrentModelIndex = 0;
     private int m_CurrentlySetModelIndex = -1;
 
-    private Unity.InferenceEngine.ModelAsset m_OriginalModel = null;
+    private ModelAsset m_OriginalModel = null;
 
     private int k_FixedUpdatePerSecond;
 

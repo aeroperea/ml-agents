@@ -16,7 +16,7 @@ public class PushAgentEscape : Agent
     {
         m_GameController = GetComponentInParent<DungeonEscapeEnvController>();
         m_AgentRb = GetComponent<Rigidbody>();
-        m_PushBlockSettings = FindObjectOfType<PushBlockSettings>();
+        m_PushBlockSettings = FindFirstObjectByType<PushBlockSettings>();
         MyKey.SetActive(false);
         IHaveAKey = false;
     }
@@ -66,6 +66,16 @@ public class PushAgentEscape : Agent
         transform.Rotate(rotateDir, Time.fixedDeltaTime * 200f);
         m_AgentRb.AddForce(dirToGo * m_PushBlockSettings.agentRunSpeed,
             ForceMode.VelocityChange);
+    }
+
+    public void HandleAttack(ActionSegment<int> act)
+    {
+        var action = act[1];
+
+        if(action == 1)
+        {
+            // we want to attack
+        }
     }
 
     /// <summary>
