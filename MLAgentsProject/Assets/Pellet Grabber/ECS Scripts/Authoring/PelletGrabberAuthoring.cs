@@ -6,6 +6,7 @@ class PelletGrabberAuthoring : MonoBehaviour
 {
     public float maxTime;
     public float2 boundary = new float2(14,14);
+    public float moveSpeed = 10f;
     class Baker : Baker<PelletGrabberAuthoring>
     {
         public override void Bake(PelletGrabberAuthoring authoring)
@@ -16,6 +17,11 @@ class PelletGrabberAuthoring : MonoBehaviour
                 invMaxTime = 1 / authoring.maxTime,
                 timeLeftNormalized = 1,
                 boundary = authoring.boundary,
+            });
+
+            AddComponent(entity, new PelletGrabberMovement 
+            {
+                moveSpeed = authoring.moveSpeed
             });
         }
     }
@@ -36,4 +42,10 @@ public struct PelletGrabber : IComponentData
 
     public bool isFailed;
     public bool isSuccess;
+}
+
+public struct PelletGrabberMovement : IComponentData
+{
+    public float moveSpeed;
+    public float2 moveInput;
 }
