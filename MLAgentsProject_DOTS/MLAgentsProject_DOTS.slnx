@@ -44,12 +44,14 @@
   <Project Path="Unity.Burst.Editor.csproj" />
   <Project Path="Unity.Sysroot.Linux_x86_64.csproj" />
   <Project Path="Unity.InferenceEngine.MacBLAS.csproj" />
+  <Project Path="VHierarchy.csproj" />
   <Project Path="Unity.AppUI.Editor.csproj" />
   <Project Path="Unity.Entities.Editor.Properties.csproj" />
   <Project Path="Unity.AppUI.InternalAPIBridge.csproj" />
   <Project Path="Unity.AppUI.Navigation.Editor.csproj" />
   <Project Path="Unity.Entities.UI.csproj" />
   <Project Path="Zelcam4.ML-Agents.csproj" />
+  <Project Path="Wingman.csproj" />
   <Project Path="Unity.AppUI.Navigation.csproj" />
   <Project Path="Unity.Mathematics.Extensions.csproj" />
   <Project Path="Unity.Serialization.Editor.csproj" />
@@ -57,6 +59,7 @@
   <Project Path="Unity.Mathematics.Editor.csproj" />
   <Project Path="Unity.Entities.Hybrid.HybridComponents.csproj" />
   <Project Path="Unity.Transforms.csproj" />
+  <Project Path="Assembly-CSharp-Editor.csproj" />
   <Project Path="Unity.Deformations.csproj" />
   <Project Path="Unity.InferenceEngine.ONNX.Editor.csproj" />
   <Project Path="Zelcam4.ML-Agents.Editor.csproj" />
