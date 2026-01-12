@@ -5,6 +5,10 @@
 /results
 # Output Builds
 /Builds
+*/Library/
+*/Temp/
+*/Logs/
+*/.vs/
 
 # Training environments
 /envs
