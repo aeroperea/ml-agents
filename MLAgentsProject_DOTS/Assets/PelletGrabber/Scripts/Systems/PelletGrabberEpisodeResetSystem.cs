@@ -8,6 +8,7 @@ using Zelcam4.MLAgents;
 // anchor: pelletgrabber-episode-reset-system
 // runs after mlagents-dots has marked agents as StartingEpisode
 [BurstCompile]
+[UpdateInGroup(typeof(SimulationSystemGroup))]
 [UpdateAfter(typeof(AgentResetSystem))]
 public partial struct PelletGrabberEpisodeResetSystem : ISystem
 {
@@ -54,7 +55,7 @@ public partial struct ResetJob : IJobEntity
         if (!agent.StartingEpisode && !g.needsReset)
             return;
 
-        float2 boundarySafe = math.max(g.boundary, new float2(1e-6f, 1e-6f));
+        float2 boundarySafe = math.max(math.abs(g.boundary), new float2(1e-6f, 1e-6f));
 
         uint seed = (uint)(agent.EpisodeId * 1000003) ^ (uint)(agent.CompletedEpisodes * 7919) ^ 0x9e3779b9u;
         if (seed == 0u) seed = 1u;
