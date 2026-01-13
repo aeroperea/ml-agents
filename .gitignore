@@ -6,6 +6,8 @@
 # Output Builds
 /Builds
 
+*/results/
+
 # Training environments
 /envs
 
