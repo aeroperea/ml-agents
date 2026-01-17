@@ -1,11 +1,12 @@
 // GridSpawnerWindow.cs
 // place this script anywhere; unity will compile editor parts only inside the editor
 
-using UnityEngine;
-using Unity.Mathematics;
+using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
-using Unity.Burst;
+using Unity.Mathematics;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -14,7 +15,6 @@ using UnityEditor.SceneManagement;
 
 public static class GridSpawnerMath
 {
-    // simple per-index seed scrambler; avoids zero seed
     public static uint MakeSeed(uint baseSeed, int index)
     {
         uint s = (uint)index * 747796405u ^ (baseSeed * 196613u) ^ 0x9E3779B9u;
@@ -25,37 +25,31 @@ public static class GridSpawnerMath
 [BurstCompile]
 public struct BuildTransformsJob : IJobParallelFor
 {
-    // grid
     public int countX, countY, countZ;
     public float3 spacing;
     public float3 origin;
     public bool centerToOrigin;
 
-    // random
     public uint baseSeed;
 
-    // rotation ranges in degrees
-    public float2 rotXDeg; // min,max
+    public float2 rotXDeg;
     public float2 rotYDeg;
     public float2 rotZDeg;
     public bool randomizeRotation;
 
-    // scale ranges
     public bool randomizeScale;
     public bool uniformScale;
-    public float2 uniformScaleRange;       // min,max
-    public float2 scaleXRange;             // min,max
+    public float2 uniformScaleRange;
+    public float2 scaleXRange;
     public float2 scaleYRange;
     public float2 scaleZRange;
 
-    // outputs
     [WriteOnly] public NativeArray<float3> outPositions;
     [WriteOnly] public NativeArray<quaternion> outRotations;
     [WriteOnly] public NativeArray<float3> outScales;
 
     public void Execute(int index)
     {
-        // decode 3d index (x fastest, then z, then y)
         int x = index % countX;
         int t = index / countX;
         int z = t % countZ;
@@ -78,8 +72,7 @@ public struct BuildTransformsJob : IJobParallelFor
                 math.lerp(rotYDeg.x, rotYDeg.y, rng.NextFloat()),
                 math.lerp(rotZDeg.x, rotZDeg.y, rng.NextFloat())
             );
-            float3 eRad = math.radians(eDeg);
-            r = quaternion.EulerXYZ(eRad);
+            r = quaternion.EulerXYZ(math.radians(eDeg));
         }
         else
         {
@@ -115,9 +108,15 @@ public struct BuildTransformsJob : IJobParallelFor
 #if UNITY_EDITOR
 public class GridSpawnerWindow : EditorWindow
 {
-    // input
     GameObject prefab;
     Transform parent;
+
+    bool useTargetSceneAsset = false;
+    SceneAsset targetSceneAsset;
+    bool saveTargetScene = true;
+    bool closeIfOpenedByTool = true;
+    bool createRootInTargetScene = true;
+    string rootNameInTargetScene = "GridSpawner_Root";
 
     int countX = 10, countY = 1, countZ = 10;
     Vector3 spacing = Vector3.one;
@@ -141,7 +140,10 @@ public class GridSpawnerWindow : EditorWindow
     bool keepPrefabConnection = true;
     bool registerUndo = true;
 
-    const int HardCap = 500000; // safety guard
+    // anchor: scroll
+    Vector2 scrollPos;
+
+    const int HardCap = 500000;
 
     [MenuItem("Tools/Grid Spawner")]
     public static void Open()
@@ -151,76 +153,121 @@ public class GridSpawnerWindow : EditorWindow
 
     void OnGUI()
     {
-        EditorGUILayout.LabelField("prefab", EditorStyles.boldLabel);
-        prefab = (GameObject)EditorGUILayout.ObjectField(prefab, typeof(GameObject), false);
-        parent = (Transform)EditorGUILayout.ObjectField("parent (optional)", parent, typeof(Transform), true);
-        keepPrefabConnection = EditorGUILayout.Toggle("keep prefab connection", keepPrefabConnection);
-        registerUndo = EditorGUILayout.Toggle("register undo", registerUndo);
-
-        EditorGUILayout.Space();
-        EditorGUILayout.LabelField("grid", EditorStyles.boldLabel);
-        using (new EditorGUILayout.HorizontalScope())
+        // anchor: scroll view begin
+        scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
+        try
         {
-            countX = EditorGUILayout.IntField("count x", Mathf.Max(1, countX));
-            countY = EditorGUILayout.IntField("count y", Mathf.Max(1, countY));
-            countZ = EditorGUILayout.IntField("count z", Mathf.Max(1, countZ));
-        }
-        spacing = EditorGUILayout.Vector3Field("spacing", spacing);
-        origin = EditorGUILayout.Vector3Field("origin", origin);
-        centerToOrigin = EditorGUILayout.Toggle("center to origin", centerToOrigin);
+            EditorGUILayout.LabelField("prefab", EditorStyles.boldLabel);
+            prefab = (GameObject)EditorGUILayout.ObjectField(prefab, typeof(GameObject), false);
+            parent = (Transform)EditorGUILayout.ObjectField("parent (optional)", parent, typeof(Transform), true);
+            keepPrefabConnection = EditorGUILayout.Toggle("keep prefab connection", keepPrefabConnection);
+            registerUndo = EditorGUILayout.Toggle("register undo", registerUndo);
 
-        EditorGUILayout.Space();
-        EditorGUILayout.LabelField("rotation randomization", EditorStyles.boldLabel);
-        randomizeRotation = EditorGUILayout.Toggle("enable", randomizeRotation);
-        EditorGUI.BeginDisabledGroup(!randomizeRotation);
-        rotXDeg = EditorGUILayout.Vector2Field("x deg min,max", rotXDeg);
-        rotYDeg = EditorGUILayout.Vector2Field("y deg min,max", rotYDeg);
-        rotZDeg = EditorGUILayout.Vector2Field("z deg min,max", rotZDeg);
-        EditorGUI.EndDisabledGroup();
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("target scene (optional)", EditorStyles.boldLabel);
+            useTargetSceneAsset = EditorGUILayout.Toggle("use scene asset (subscene)", useTargetSceneAsset);
+            EditorGUI.BeginDisabledGroup(!useTargetSceneAsset);
+            targetSceneAsset = (SceneAsset)EditorGUILayout.ObjectField("scene asset", targetSceneAsset, typeof(SceneAsset), false);
+            saveTargetScene = EditorGUILayout.Toggle("save scene", saveTargetScene);
+            closeIfOpenedByTool = EditorGUILayout.Toggle("close if opened by tool", closeIfOpenedByTool);
+            createRootInTargetScene = EditorGUILayout.Toggle("create/find root in target scene", createRootInTargetScene);
+            EditorGUI.BeginDisabledGroup(!createRootInTargetScene);
+            rootNameInTargetScene = EditorGUILayout.TextField("root name", rootNameInTargetScene);
+            EditorGUI.EndDisabledGroup();
+            EditorGUI.EndDisabledGroup();
 
-        EditorGUILayout.Space();
-        EditorGUILayout.LabelField("scale randomization", EditorStyles.boldLabel);
-        randomizeScale = EditorGUILayout.Toggle("enable", randomizeScale);
-        EditorGUI.BeginDisabledGroup(!randomizeScale);
-        uniformScale = EditorGUILayout.Toggle("uniform", uniformScale);
-        if (uniformScale)
-        {
-            uniformScaleRange = EditorGUILayout.Vector2Field("uniform min,max", uniformScaleRange);
-        }
-        else
-        {
-            scaleXRange = EditorGUILayout.Vector2Field("x min,max", scaleXRange);
-            scaleYRange = EditorGUILayout.Vector2Field("y min,max", scaleYRange);
-            scaleZRange = EditorGUILayout.Vector2Field("z min,max", scaleZRange);
-        }
-        EditorGUI.EndDisabledGroup();
-
-        EditorGUILayout.Space();
-        baseSeed = (uint)Mathf.Max(1, EditorGUILayout.IntField("seed", (int)baseSeed));
-
-        int total = SafeMul(SafeMul(countX, countY), countZ);
-        EditorGUILayout.Space();
-        EditorGUILayout.LabelField($"total instances: {total}");
-
-        using (new EditorGUILayout.HorizontalScope())
-        {
-            GUI.enabled = prefab != null && total > 0 && total <= HardCap;
-            if (GUILayout.Button("spawn"))
+            if (useTargetSceneAsset && targetSceneAsset == null)
             {
-                Spawn(total);
+                EditorGUILayout.HelpBox("assign a scene asset (.unity). for entities subscene, drag the subscene scene file here.", MessageType.Warning);
             }
-            GUI.enabled = true;
-
-            if (parent != null)
+            else if (useTargetSceneAsset && parent != null && targetSceneAsset != null)
             {
-                if (GUILayout.Button("delete children of parent"))
+                string targetPath = AssetDatabase.GetAssetPath(targetSceneAsset);
+                if (!string.IsNullOrEmpty(targetPath) && parent.gameObject.scene.path != targetPath)
                 {
-                    DeleteAllChildren(parent);
+                    EditorGUILayout.HelpBox("parent is not in the target scene. it will be ignored and a root will be used (if enabled).", MessageType.Info);
                 }
             }
-        }
 
-        EditorGUILayout.HelpBox("spawns are computed with a burst job then instantiated on main thread. use a parent to keep your hierarchy clean.", MessageType.Info);
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("grid", EditorStyles.boldLabel);
+            using (new EditorGUILayout.HorizontalScope())
+            {
+                countX = EditorGUILayout.IntField("count x", Mathf.Max(1, countX));
+                countY = EditorGUILayout.IntField("count y", Mathf.Max(1, countY));
+                countZ = EditorGUILayout.IntField("count z", Mathf.Max(1, countZ));
+            }
+            spacing = EditorGUILayout.Vector3Field("spacing", spacing);
+            origin = EditorGUILayout.Vector3Field("origin", origin);
+            centerToOrigin = EditorGUILayout.Toggle("center to origin", centerToOrigin);
+
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("rotation randomization", EditorStyles.boldLabel);
+            randomizeRotation = EditorGUILayout.Toggle("enable", randomizeRotation);
+            EditorGUI.BeginDisabledGroup(!randomizeRotation);
+            rotXDeg = EditorGUILayout.Vector2Field("x deg min,max", rotXDeg);
+            rotYDeg = EditorGUILayout.Vector2Field("y deg min,max", rotYDeg);
+            rotZDeg = EditorGUILayout.Vector2Field("z deg min,max", rotZDeg);
+            EditorGUI.EndDisabledGroup();
+
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("scale randomization", EditorStyles.boldLabel);
+            randomizeScale = EditorGUILayout.Toggle("enable", randomizeScale);
+            EditorGUI.BeginDisabledGroup(!randomizeScale);
+            uniformScale = EditorGUILayout.Toggle("uniform", uniformScale);
+            if (uniformScale)
+            {
+                uniformScaleRange = EditorGUILayout.Vector2Field("uniform min,max", uniformScaleRange);
+            }
+            else
+            {
+                scaleXRange = EditorGUILayout.Vector2Field("x min,max", scaleXRange);
+                scaleYRange = EditorGUILayout.Vector2Field("y min,max", scaleYRange);
+                scaleZRange = EditorGUILayout.Vector2Field("z min,max", scaleZRange);
+            }
+            EditorGUI.EndDisabledGroup();
+
+            EditorGUILayout.Space();
+            baseSeed = (uint)Mathf.Max(1, EditorGUILayout.IntField("seed", (int)baseSeed));
+
+            int total = SafeMul(SafeMul(countX, countY), countZ);
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField($"total instances: {total}");
+
+            using (new EditorGUILayout.HorizontalScope())
+            {
+                bool validTarget = !useTargetSceneAsset || targetSceneAsset != null;
+                GUI.enabled = prefab != null && validTarget && total > 0 && total <= HardCap;
+                if (GUILayout.Button("spawn"))
+                {
+                    Spawn(total);
+                }
+                GUI.enabled = true;
+
+                if (parent != null)
+                {
+                    if (GUILayout.Button("delete children of parent"))
+                    {
+                        DeleteAllChildren(parent);
+                    }
+                }
+
+                bool canDeleteRoot = useTargetSceneAsset && targetSceneAsset != null && createRootInTargetScene && !string.IsNullOrEmpty(rootNameInTargetScene);
+                EditorGUI.BeginDisabledGroup(!canDeleteRoot);
+                if (GUILayout.Button("delete root in target scene"))
+                {
+                    DeleteRootInTargetScene();
+                }
+                EditorGUI.EndDisabledGroup();
+            }
+
+            EditorGUILayout.HelpBox("spawns are computed with a burst job then instantiated on main thread. if you set a target scene, it will be opened additively (if needed), modified, then saved/closed.", MessageType.Info);
+        }
+        finally
+        {
+            // anchor: scroll view end
+            EditorGUILayout.EndScrollView();
+        }
     }
 
     static int SafeMul(int a, int b)
@@ -233,8 +280,11 @@ public class GridSpawnerWindow : EditorWindow
     {
         if (prefab == null) return;
 
+        Scene targetScene = ResolveTargetScene(out bool openedByTool);
+        Transform actualParent = ResolveParentForTargetScene(targetScene);
+
         int workerCount = Unity.Jobs.LowLevel.Unsafe.JobsUtility.JobWorkerCount;
-        int batchesPerWorker = 4; // small number keeps scheduling overhead low
+        int batchesPerWorker = 4;
         int innerBatch = math.max(1, total / math.max(1, workerCount * batchesPerWorker));
 
         var positions = new NativeArray<float3>(total, Allocator.TempJob);
@@ -269,6 +319,9 @@ public class GridSpawnerWindow : EditorWindow
             outScales = scales
         };
 
+        bool canceled = false;
+        int spawned = 0;
+
         try
         {
             var handle = job.Schedule(total, innerBatch);
@@ -286,6 +339,7 @@ public class GridSpawnerWindow : EditorWindow
                         float p = (float)i / Mathf.Max(1, total);
                         if (EditorUtility.DisplayCancelableProgressBar("spawning", $"{i}/{total}", p))
                         {
+                            canceled = true;
                             break;
                         }
                     }
@@ -296,18 +350,26 @@ public class GridSpawnerWindow : EditorWindow
 
                     if (go == null) continue;
 
+                    if (go.scene != targetScene)
+                        SceneManager.MoveGameObjectToScene(go, targetScene);
+
                     if (registerUndo) Undo.RegisterCreatedObjectUndo(go, undoName);
 
-                    if (parent != null) go.transform.SetParent(parent, true);
+                    if (actualParent != null)
+                        go.transform.SetParent(actualParent, true);
 
                     go.transform.SetPositionAndRotation((Vector3)positions[i], (Quaternion)rotations[i]);
                     go.transform.localScale = (Vector3)scales[i];
+
+                    spawned++;
                 }
             }
             finally
             {
                 EditorUtility.ClearProgressBar();
-                EditorSceneManager.MarkAllScenesDirty();
+
+                if (spawned > 0 && targetScene.IsValid() && targetScene.isLoaded)
+                    EditorSceneManager.MarkSceneDirty(targetScene);
             }
         }
         finally
@@ -315,12 +377,131 @@ public class GridSpawnerWindow : EditorWindow
             if (positions.IsCreated) positions.Dispose();
             if (rotations.IsCreated) rotations.Dispose();
             if (scales.IsCreated) scales.Dispose();
+
+            FinalizeTargetScene(targetScene, openedByTool, canceled);
+        }
+    }
+
+    Scene ResolveTargetScene(out bool openedByTool)
+    {
+        openedByTool = false;
+
+        if (useTargetSceneAsset && targetSceneAsset != null)
+        {
+            string path = AssetDatabase.GetAssetPath(targetSceneAsset);
+            if (!string.IsNullOrEmpty(path))
+            {
+                if (TryGetLoadedSceneByPath(path, out Scene loaded))
+                    return loaded;
+
+                openedByTool = true;
+                return EditorSceneManager.OpenScene(path, OpenSceneMode.Additive);
+            }
+        }
+
+        if (parent != null)
+            return parent.gameObject.scene;
+
+        return SceneManager.GetActiveScene();
+    }
+
+    Transform ResolveParentForTargetScene(Scene targetScene)
+    {
+        Transform p = parent;
+
+        if (p != null && p.gameObject.scene != targetScene)
+            p = null;
+
+        if (p == null && useTargetSceneAsset && targetSceneAsset != null && createRootInTargetScene && !string.IsNullOrEmpty(rootNameInTargetScene))
+        {
+            GameObject root = FindRootByName(targetScene, rootNameInTargetScene);
+            if (root == null)
+            {
+                root = new GameObject(rootNameInTargetScene);
+                SceneManager.MoveGameObjectToScene(root, targetScene);
+                if (registerUndo) Undo.RegisterCreatedObjectUndo(root, "Create Grid Root");
+            }
+            p = root.transform;
+        }
+
+        return p;
+    }
+
+    void FinalizeTargetScene(Scene targetScene, bool openedByTool)
+    {
+        FinalizeTargetScene(targetScene, openedByTool, false);
+    }
+
+    void FinalizeTargetScene(Scene targetScene, bool openedByTool, bool canceled)
+    {
+        if (canceled) return;
+
+        if (saveTargetScene && targetScene.IsValid() && targetScene.isLoaded && targetScene.isDirty)
+        {
+            EditorSceneManager.SaveScene(targetScene);
+        }
+
+        if (openedByTool && closeIfOpenedByTool && targetScene.IsValid() && targetScene.isLoaded)
+        {
+            EditorSceneManager.CloseScene(targetScene, true);
+        }
+    }
+
+    static bool TryGetLoadedSceneByPath(string path, out Scene scene)
+    {
+        int n = SceneManager.sceneCount;
+        for (int i = 0; i < n; i++)
+        {
+            var s = SceneManager.GetSceneAt(i);
+            if (s.path == path)
+            {
+                scene = s;
+                return true;
+            }
+        }
+
+        scene = default;
+        return false;
+    }
+
+    static GameObject FindRootByName(Scene scene, string name)
+    {
+        if (!scene.IsValid() || !scene.isLoaded) return null;
+        var roots = scene.GetRootGameObjects();
+        for (int i = 0; i < roots.Length; i++)
+        {
+            if (roots[i] != null && roots[i].name == name)
+                return roots[i];
+        }
+        return null;
+    }
+
+    void DeleteRootInTargetScene()
+    {
+        if (!useTargetSceneAsset || targetSceneAsset == null) return;
+        if (string.IsNullOrEmpty(rootNameInTargetScene)) return;
+
+        Scene targetScene = ResolveTargetScene(out bool openedByTool);
+
+        try
+        {
+            GameObject root = FindRootByName(targetScene, rootNameInTargetScene);
+            if (root == null) return;
+
+            Undo.IncrementCurrentGroup();
+            Undo.DestroyObjectImmediate(root);
+            EditorSceneManager.MarkSceneDirty(targetScene);
+        }
+        finally
+        {
+            FinalizeTargetScene(targetScene, openedByTool, false);
         }
     }
 
     static void DeleteAllChildren(Transform p)
     {
         if (p == null) return;
+
         var toDelete = new System.Collections.Generic.List<GameObject>();
         foreach (Transform c in p)
             toDelete.Add(c.gameObject);
@@ -330,7 +511,10 @@ public class GridSpawnerWindow : EditorWindow
         Undo.IncrementCurrentGroup();
         foreach (var go in toDelete)
             Undo.DestroyObjectImmediate(go);
-        EditorSceneManager.MarkAllScenesDirty();
+
+        var scene = p.gameObject.scene;
+        if (scene.IsValid() && scene.isLoaded)
+            EditorSceneManager.MarkSceneDirty(scene);
     }
 }
 #endif
