@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Unity Projects\\AI\\ml-agents\\MLAgentsProject_DOTS\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{85B74041-2CBC-73DD-0A93-C2845080A247}|Assembly-CSharp-Editor.csproj|c:\\unity projects\\ai\\ml-agents\\mlagentsproject_dots\\assets\\editor\\buildcommandline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{85B74041-2CBC-73DD-0A93-C2845080A247}|Assembly-CSharp-Editor.csproj|solutionrelative:assets\\editor\\buildcommandline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{85B74041-2CBC-73DD-0A93-C2845080A247}|Assembly-CSharp-Editor.csproj|c:\\unity projects\\ai\\ml-agents\\mlagentsproject_dots\\assets\\editor\\gridspawnerwindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{85B74041-2CBC-73DD-0A93-C2845080A247}|Assembly-CSharp-Editor.csproj|solutionrelative:assets\\editor\\gridspawnerwindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -71,6 +75,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "BuildCommandLine.cs",
+              "DocumentMoniker": "C:\\Unity Projects\\AI\\ml-agents\\MLAgentsProject_DOTS\\Assets\\Editor\\BuildCommandLine.cs",
+              "RelativeDocumentMoniker": "Assets\\Editor\\BuildCommandLine.cs",
+              "ToolTip": "C:\\Unity Projects\\AI\\ml-agents\\MLAgentsProject_DOTS\\Assets\\Editor\\BuildCommandLine.cs",
+              "RelativeToolTip": "Assets\\Editor\\BuildCommandLine.cs",
+              "ViewState": "AgIAAEQAAAAAAAAAAADwv2sAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-18T12:16:14.723Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "GridSpawnerWindow.cs",
               "DocumentMoniker": "C:\\Unity Projects\\AI\\ml-agents\\MLAgentsProject_DOTS\\Assets\\Editor\\GridSpawnerWindow.cs",
               "RelativeDocumentMoniker": "Assets\\Editor\\GridSpawnerWindow.cs",
@@ -83,7 +100,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "PelletGrabberObservationDefs.cs",
               "DocumentMoniker": "C:\\Unity Projects\\AI\\ml-agents\\MLAgentsProject_DOTS\\Assets\\PelletGrabber\\Scripts\\Authoring\\PelletGrabberObservationDefs.cs",
               "RelativeDocumentMoniker": "Assets\\PelletGrabber\\Scripts\\Authoring\\PelletGrabberObservationDefs.cs",
@@ -95,7 +112,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "PelletGrabberComponents.cs",
               "DocumentMoniker": "C:\\Unity Projects\\AI\\ml-agents\\MLAgentsProject_DOTS\\Assets\\PelletGrabber\\Scripts\\Authoring\\PelletGrabberComponents.cs",
               "RelativeDocumentMoniker": "Assets\\PelletGrabber\\Scripts\\Authoring\\PelletGrabberComponents.cs",
@@ -107,7 +124,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "PelletGrabberAuthoring.cs",
               "DocumentMoniker": "C:\\Unity Projects\\AI\\ml-agents\\MLAgentsProject_DOTS\\Assets\\PelletGrabber\\Scripts\\Authoring\\PelletGrabberAuthoring.cs",
               "RelativeDocumentMoniker": "Assets\\PelletGrabber\\Scripts\\Authoring\\PelletGrabberAuthoring.cs",
@@ -119,7 +136,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "PelletGrabberRewardSystem.cs",
               "DocumentMoniker": "C:\\Unity Projects\\AI\\ml-agents\\MLAgentsProject_DOTS\\Assets\\PelletGrabber\\Scripts\\Systems\\PelletGrabberRewardSystem.cs",
               "RelativeDocumentMoniker": "Assets\\PelletGrabber\\Scripts\\Systems\\PelletGrabberRewardSystem.cs",
@@ -131,7 +148,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "PelletGrabberMovementSystem.cs",
               "DocumentMoniker": "C:\\Unity Projects\\AI\\ml-agents\\MLAgentsProject_DOTS\\Assets\\PelletGrabber\\Scripts\\Systems\\PelletGrabberMovementSystem.cs",
               "RelativeDocumentMoniker": "Assets\\PelletGrabber\\Scripts\\Systems\\PelletGrabberMovementSystem.cs",
@@ -143,7 +160,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "PelletGrabberEpisodeResetSystem.cs",
               "DocumentMoniker": "C:\\Unity Projects\\AI\\ml-agents\\MLAgentsProject_DOTS\\Assets\\PelletGrabber\\Scripts\\Systems\\PelletGrabberEpisodeResetSystem.cs",
               "RelativeDocumentMoniker": "Assets\\PelletGrabber\\Scripts\\Systems\\PelletGrabberEpisodeResetSystem.cs",
@@ -155,7 +172,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "PelletGrabberActionInputSystem.cs",
               "DocumentMoniker": "C:\\Unity Projects\\AI\\ml-agents\\MLAgentsProject_DOTS\\Assets\\PelletGrabber\\Scripts\\Systems\\PelletGrabberActionInputSystem.cs",
               "RelativeDocumentMoniker": "Assets\\PelletGrabber\\Scripts\\Systems\\PelletGrabberActionInputSystem.cs",
@@ -167,7 +184,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "PelletGrabberObservationGatherSystem.cs",
               "DocumentMoniker": "C:\\Unity Projects\\AI\\ml-agents\\MLAgentsProject_DOTS\\Assets\\PelletGrabber\\Scripts\\Systems\\PelletGrabberObservationGatherSystem.cs",
               "RelativeDocumentMoniker": "Assets\\PelletGrabber\\Scripts\\Systems\\PelletGrabberObservationGatherSystem.cs",
@@ -179,7 +196,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "PelletGrabberObservationStateSystem.cs",
               "DocumentMoniker": "C:\\Unity Projects\\AI\\ml-agents\\MLAgentsProject_DOTS\\Assets\\PelletGrabber\\Scripts\\Systems\\PelletGrabberObservationStateSystem.cs",
               "RelativeDocumentMoniker": "Assets\\PelletGrabber\\Scripts\\Systems\\PelletGrabberObservationStateSystem.cs",
@@ -191,7 +208,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "DecideActionSystem.cs",
               "DocumentMoniker": "C:\\Unity Projects\\AI\\ml-agents\\MLAgentsProject_DOTS\\Library\\PackageCache\\com.zelcam4.ml-agents@339aa2fb9850\\Runtime\\Systems\\DecideActionSystem.cs",
               "RelativeDocumentMoniker": "Library\\PackageCache\\com.zelcam4.ml-agents@339aa2fb9850\\Runtime\\Systems\\DecideActionSystem.cs",
@@ -203,7 +220,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ExternalCommunicatorSystem.cs",
               "DocumentMoniker": "C:\\Unity Projects\\AI\\ml-agents\\MLAgentsProject_DOTS\\Library\\PackageCache\\com.zelcam4.ml-agents@339aa2fb9850\\Runtime\\Systems\\ExternalCommunicatorSystem.cs",
               "RelativeDocumentMoniker": "Library\\PackageCache\\com.zelcam4.ml-agents@339aa2fb9850\\Runtime\\Systems\\ExternalCommunicatorSystem.cs",
@@ -215,7 +232,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "CommunicatorManager.cs",
               "DocumentMoniker": "C:\\Unity Projects\\AI\\ml-agents\\MLAgentsProject_DOTS\\Library\\PackageCache\\com.zelcam4.ml-agents@339aa2fb9850\\Runtime\\Communicator\\CommunicatorManager.cs",
               "RelativeDocumentMoniker": "Library\\PackageCache\\com.zelcam4.ml-agents@339aa2fb9850\\Runtime\\Communicator\\CommunicatorManager.cs",
@@ -227,7 +244,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "PelletGrabberObservationsAuthoring.cs",
               "DocumentMoniker": "C:\\Unity Projects\\AI\\ml-agents\\MLAgentsProject_DOTS\\Assets\\PelletGrabber\\Scripts\\Authoring\\PelletGrabberObservationsAuthoring.cs",
               "RelativeDocumentMoniker": "Assets\\PelletGrabber\\Scripts\\Authoring\\PelletGrabberObservationsAuthoring.cs",
